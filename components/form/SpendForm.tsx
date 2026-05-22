@@ -2,46 +2,197 @@
 
 import { useState } from "react";
 
+const toolOptions = [
+  "Cursor",
+  "GitHub Copilot",
+  "Claude",
+  "ChatGPT",
+  "Gemini",
+  "OpenAI API",
+  "Anthropic API",
+  "Windsurf",
+];
+
 export default function SpendForm() {
+  const [tools, setTools] = useState([
+    {
+      tool: "Cursor",
+      plan: "",
+      spend: "",
+      seats: "",
+    },
+  ]);
+
   const [teamSize, setTeamSize] = useState("");
-  const [monthlySpend, setMonthlySpend] = useState("");
+  const [useCase, setUseCase] = useState("coding");
+
+  const addTool = () => {
+    setTools([
+      ...tools,
+      {
+        tool: "Cursor",
+        plan: "",
+        spend: "",
+        seats: "",
+      },
+    ]);
+  };
+
+  const updateTool = (
+    index: number,
+    field: string,
+    value: string
+  ) => {
+    const updated = [...tools];
+    updated[index] = {
+      ...updated[index],
+      [field]: value,
+    };
+
+    setTools(updated);
+  };
 
   return (
-    <form className="space-y-6 text-left">
-      <div>
-        <label className="mb-2 block text-sm font-medium text-slate-200">
-          Team Size
-        </label>
+    <form className="space-y-8 text-left">
+      {/* Team Details */}
+      <div className="grid gap-6 md:grid-cols-2">
+        <div>
+          <label className="mb-2 block text-sm font-medium text-slate-200">
+            Team Size
+          </label>
 
-        <input
-          type="number"
-          placeholder="e.g. 8"
-          value={teamSize}
-          onChange={(e) => setTeamSize(e.target.value)}
-          className="w-full rounded-xl border border-white/10 bg-slate-900 px-4 py-3 text-white outline-none transition focus:border-emerald-400"
-        />
+          <input
+            type="number"
+            placeholder="e.g. 8"
+            value={teamSize}
+            onChange={(e) => setTeamSize(e.target.value)}
+            className="w-full rounded-xl border border-white/10 bg-slate-900 px-4 py-3 text-white outline-none transition focus:border-emerald-400"
+          />
+        </div>
+
+        <div>
+          <label className="mb-2 block text-sm font-medium text-slate-200">
+            Primary Use Case
+          </label>
+
+          <select
+            value={useCase}
+            onChange={(e) => setUseCase(e.target.value)}
+            className="w-full rounded-xl border border-white/10 bg-slate-900 px-4 py-3 text-white outline-none transition focus:border-emerald-400"
+          >
+            <option value="coding">Coding</option>
+            <option value="writing">Writing</option>
+            <option value="research">Research</option>
+            <option value="data">Data Analysis</option>
+            <option value="mixed">Mixed</option>
+          </select>
+        </div>
       </div>
 
-      <div>
-        <label className="mb-2 block text-sm font-medium text-slate-200">
-          Monthly AI Spend ($)
-        </label>
+      {/* Tools */}
+      <div className="space-y-6">
+        <div className="flex items-center justify-between">
+          <h2 className="text-lg font-semibold text-white">
+            AI Tools
+          </h2>
 
-        <input
-          type="number"
-          placeholder="e.g. 450"
-          value={monthlySpend}
-          onChange={(e) => setMonthlySpend(e.target.value)}
-          className="w-full rounded-xl border border-white/10 bg-slate-900 px-4 py-3 text-white outline-none transition focus:border-emerald-400"
-        />
+          <button
+            type="button"
+            onClick={addTool}
+            className="rounded-lg border border-emerald-400/30 bg-emerald-400/10 px-4 py-2 text-sm text-emerald-300 transition hover:bg-emerald-400/20"
+          >
+            + Add Tool
+          </button>
+        </div>
+
+        {tools.map((tool, index) => (
+          <div
+            key={index}
+            className="rounded-2xl border border-white/10 bg-slate-900/60 p-5"
+          >
+            <div className="grid gap-4 md:grid-cols-4">
+              {/* Tool */}
+              <div>
+                <label className="mb-2 block text-sm text-slate-300">
+                  Tool
+                </label>
+
+                <select
+                  value={tool.tool}
+                  onChange={(e) =>
+                    updateTool(index, "tool", e.target.value)
+                  }
+                  className="w-full rounded-xl border border-white/10 bg-slate-950 px-4 py-3 text-white outline-none focus:border-emerald-400"
+                >
+                  {toolOptions.map((item) => (
+                    <option key={item}>{item}</option>
+                  ))}
+                </select>
+              </div>
+
+              {/* Plan */}
+              <div>
+                <label className="mb-2 block text-sm text-slate-300">
+                  Plan
+                </label>
+
+                <input
+                  type="text"
+                  placeholder="e.g. Pro"
+                  value={tool.plan}
+                  onChange={(e) =>
+                    updateTool(index, "plan", e.target.value)
+                  }
+                  className="w-full rounded-xl border border-white/10 bg-slate-950 px-4 py-3 text-white outline-none focus:border-emerald-400"
+                />
+              </div>
+
+              {/* Spend */}
+              <div>
+                <label className="mb-2 block text-sm text-slate-300">
+                  Monthly Spend
+                </label>
+
+                <input
+                  type="number"
+                  placeholder="$"
+                  value={tool.spend}
+                  onChange={(e) =>
+                    updateTool(index, "spend", e.target.value)
+                  }
+                  className="w-full rounded-xl border border-white/10 bg-slate-950 px-4 py-3 text-white outline-none focus:border-emerald-400"
+                />
+              </div>
+
+              {/* Seats */}
+              <div>
+                <label className="mb-2 block text-sm text-slate-300">
+                  Seats
+                </label>
+
+                <input
+                  type="number"
+                  placeholder="e.g. 5"
+                  value={tool.seats}
+                  onChange={(e) =>
+                    updateTool(index, "seats", e.target.value)
+                  }
+                  className="w-full rounded-xl border border-white/10 bg-slate-950 px-4 py-3 text-white outline-none focus:border-emerald-400"
+                />
+              </div>
+            </div>
+          </div>
+        ))}
       </div>
 
+      {/* CTA */}
       <button
         type="button"
-        className="w-full rounded-xl bg-emerald-400 px-5 py-3 font-semibold text-slate-950 transition hover:bg-emerald-300"
+        className="w-full rounded-2xl bg-emerald-400 px-6 py-4 text-lg font-semibold text-slate-950 transition hover:bg-emerald-300"
       >
-        Run Free Audit
+        Run Free AI Spend Audit
       </button>
     </form>
   );
 }
+
