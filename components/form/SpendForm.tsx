@@ -1,6 +1,10 @@
+
 "use client";
 
-import { useState } from "react";
+import { runAudit } from "@/lib/audit"; 
+
+import { useEffect, useState } from "react";  
+
 
 const toolOptions = [
   "Cursor",
@@ -25,6 +29,28 @@ export default function SpendForm() {
 
   const [teamSize, setTeamSize] = useState("");
   const [useCase, setUseCase] = useState("coding");
+  useEffect(() => {
+  const savedData = localStorage.getItem("audit-form");
+
+  if (savedData) {
+    const parsed = JSON.parse(savedData);
+
+    setTeamSize(parsed.teamSize || "");
+    setUseCase(parsed.useCase || "coding");
+    setTools(parsed.tools || tools);
+  }
+}, []);
+
+useEffect(() => {
+  localStorage.setItem(
+    "audit-form",
+    JSON.stringify({
+      teamSize,
+      useCase,
+      tools,
+    })
+  );
+}, [teamSize, useCase, tools]);
 
   const addTool = () => {
     setTools([
@@ -37,6 +63,20 @@ export default function SpendForm() {
       },
     ]);
   };
+  const handleAudit = () => {
+  const formattedTools = tools.map((tool) => ({
+    tool: tool.tool,
+    plan: tool.plan,
+    spend: Number(tool.spend),
+    seats: Number(tool.seats),
+  }));
+
+  const results = runAudit(formattedTools);
+
+  console.log(results);
+
+  alert("Audit generated! Check console for results.");
+};
 
   const updateTool = (
     index: number,
@@ -188,6 +228,7 @@ export default function SpendForm() {
       {/* CTA */}
       <button
         type="button"
+        onClick={handleAudit}
         className="w-full rounded-2xl bg-emerald-400 px-6 py-4 text-lg font-semibold text-slate-950 transition hover:bg-emerald-300"
       >
         Run Free AI Spend Audit
