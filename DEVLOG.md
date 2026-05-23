@@ -15,3 +15,20 @@ The biggest challenge currently is designing audit logic that feels financially 
 
 **Plan for tomorrow:**  
 Build the pricing data structure, create the first version of the audit engine, and support multiple AI tools dynamically in the form. I also plan to start writing automated tests for the savings calculations.
+
+## Day 2 — 2026-05-24
+
+**Hours worked:** 5
+
+**What I did:**  
+Today I focused on the core product logic instead of visual polish. I built the first working version of the audit engine with deterministic recommendation rules for AI tools like ChatGPT, Cursor, Claude, GitHub Copilot, Gemini, and API-based usage. I added monthly and annual savings calculations, dynamic audit results rendering, conditional Credex consultation prompts for high-savings users, and “already optimized” states for low-savings cases. I also added localStorage persistence so form data survives reloads.
+
+**What I learned:**  
+I realized that believable financial recommendations are much harder than building UI. Generic “save money” logic feels fake very quickly, so I started making the audit rules more tool-specific and usage-aware. I also learned that honest “you’re already optimized” messaging increases trust in the product.
+
+**Blockers / what I'm stuck on:**  
+The biggest challenge is balancing simplicity with credibility. I don’t want the audit engine to become overly complex, but recommendations still need to feel grounded and financially defensible.
+
+**Plan for tomorrow:**  
+Implement shareable audit result pages, improve the visual polish of the results dashboard, and add AI-generated personalized summaries with fallback handling.
+
