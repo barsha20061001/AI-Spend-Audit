@@ -1,5 +1,7 @@
 
 "use client";
+import { v4 as uuidv4 } from "uuid";
+import { saveAuditResult } from "@/lib/resultStore";
 
 import { runAudit } from "@/lib/audit"; 
 
@@ -77,6 +79,16 @@ useEffect(() => {
   const results = runAudit(formattedTools);
 
   setAuditResults(results);
+
+const auditId = uuidv4();
+
+saveAuditResult(auditId, results);
+
+window.history.pushState(
+  {},
+  "",
+  `/audit/${auditId}`
+);
 };
 
   const updateTool = (

@@ -62,6 +62,25 @@ export default function AuditResults({ results }: Props) {
   )}
 </div>
 
+<div className="flex flex-wrap items-center justify-center gap-4">
+  <button
+    onClick={() =>
+      navigator.clipboard.writeText(window.location.href)
+    }
+    className="rounded-xl border border-white/10 bg-white/10 px-5 py-3 text-sm font-medium text-white transition hover:bg-white/20"
+  >
+    Copy Shareable Link
+  </button>
+
+  <a
+    href={`https://twitter.com/intent/tweet?text=I just analyzed my AI stack savings`}
+    target="_blank"
+    className="rounded-xl bg-emerald-400 px-5 py-3 text-sm font-semibold text-slate-950 transition hover:bg-emerald-300"
+  >
+    Share on X
+  </a>
+</div>
+
       {/* Tool Results */}
       <div className="space-y-5">
         {results.map((result, index) => (
