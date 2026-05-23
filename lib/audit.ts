@@ -63,14 +63,63 @@ export function runAudit(tools: ToolInput[]): AuditResult[] {
     }
 
     // Generic overspend
-    if (tool.spend > 300 && tool.seats <= 3) {
-      recommendedSpend = tool.spend * 0.7;
+    // OpenAI API overspend
+if (
+  tool.tool === "OpenAI API" &&
+  tool.spend > 500 &&
+  tool.seats <= 5
+) {
+  recommendedSpend = tool.spend * 0.75;
 
-      recommendation = "Reduce plan or optimize usage";
+  recommendation =
+    "Optimize API usage or explore discounted infrastructure credits";
 
-      reason =
-        "Your spend appears unusually high relative to team size.";
-    }
+  reason =
+    "Your API spend appears high relative to team size. Usage optimization or discounted credits could reduce costs substantially.";
+}
+
+// Anthropic API overspend
+if (
+  tool.tool === "Anthropic API" &&
+  tool.spend > 400
+) {
+  recommendedSpend = tool.spend * 0.8;
+
+  recommendation =
+    "Review token usage and consider lower-cost access options";
+
+  reason =
+    "Heavy Claude API usage often contains opportunities for prompt and token optimization.";
+}
+
+// Gemini Ultra logic
+if (
+  tool.tool === "Gemini" &&
+  tool.plan.toLowerCase() === "ultra" &&
+  tool.seats <= 2
+) {
+  recommendedSpend = 20 * tool.seats;
+
+  recommendation = "Downgrade to Gemini Pro";
+
+  reason =
+    "Gemini Ultra is typically unnecessary for smaller general-purpose workflows.";
+}
+
+// GitHub Copilot Enterprise logic
+if (
+  tool.tool === "GitHub Copilot" &&
+  tool.plan.toLowerCase() === "enterprise" &&
+  tool.seats <= 5
+) {
+  recommendedSpend = 19 * tool.seats;
+
+  recommendation = "Switch to GitHub Copilot Business";
+
+  reason =
+    "Enterprise-tier controls are usually unnecessary for smaller engineering teams.";
+}
+
 
     const monthlySavings = Math.max(
       0,
