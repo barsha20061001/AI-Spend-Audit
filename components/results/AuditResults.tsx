@@ -23,24 +23,44 @@ export default function AuditResults({ results }: Props) {
   return (
     <div className="mt-10 space-y-6">
       {/* Hero */}
+
       <div className="rounded-3xl border border-emerald-400/20 bg-emerald-400/10 p-8 text-center">
-        <p className="text-sm uppercase tracking-widest text-emerald-300">
-          Estimated Savings
-        </p>
+  {totalMonthlySavings > 0 ? (
+    <>
+      <p className="text-sm uppercase tracking-widest text-emerald-300">
+        Estimated Savings
+      </p>
 
-        <h2 className="mt-4 text-5xl font-bold text-white">
-          ${totalMonthlySavings.toFixed(0)}
-          <span className="text-xl text-slate-300">/month</span>
-        </h2>
+      <h2 className="mt-4 text-5xl font-bold text-white">
+        ${totalMonthlySavings.toFixed(0)}
+        <span className="text-xl text-slate-300">/month</span>
+      </h2>
 
-        <p className="mt-3 text-slate-300">
-          Potential annual savings:
-          <span className="font-semibold text-white">
-            {" "}
-            ${totalAnnualSavings.toFixed(0)}
-          </span>
-        </p>
-      </div>
+      <p className="mt-3 text-slate-300">
+        Potential annual savings:
+        <span className="font-semibold text-white">
+          {" "}
+          ${totalAnnualSavings.toFixed(0)}
+        </span>
+      </p>
+    </>
+  ) : (
+    <>
+      <p className="text-sm uppercase tracking-widest text-emerald-300">
+        Your AI Spend Looks Healthy
+      </p>
+
+      <h2 className="mt-4 text-4xl font-bold text-white">
+        No major overspending detected
+      </h2>
+
+      <p className="mt-4 text-slate-300">
+        Your current AI tooling setup appears reasonably optimized for your
+        team size and usage patterns.
+      </p>
+    </>
+  )}
+</div>
 
       {/* Tool Results */}
       <div className="space-y-5">
@@ -102,6 +122,23 @@ export default function AuditResults({ results }: Props) {
           </button>
         </div>
       )}
+
+      {totalMonthlySavings < 100 && (
+  <div className="rounded-3xl border border-white/10 bg-slate-900/60 p-8 text-center">
+    <h3 className="text-2xl font-bold text-white">
+      Stay updated on future optimizations
+    </h3>
+
+    <p className="mt-3 text-slate-300">
+      Your stack already looks efficient, but AI pricing changes fast.
+      Join the waitlist to get notified when new savings opportunities appear.
+    </p>
+
+    <button className="mt-6 rounded-2xl border border-white/10 bg-white/10 px-6 py-3 font-semibold text-white transition hover:bg-white/20">
+      Notify Me
+    </button>
+  </div>
+)}
     </div>
   );
 }
