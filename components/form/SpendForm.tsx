@@ -3,6 +3,8 @@
 
 import { runAudit } from "@/lib/audit"; 
 
+import AuditResults from "../results/AuditResults";
+
 import { useEffect, useState } from "react";  
 
 
@@ -29,6 +31,7 @@ export default function SpendForm() {
 
   const [teamSize, setTeamSize] = useState("");
   const [useCase, setUseCase] = useState("coding");
+  const [auditResults, setAuditResults] = useState<any[]>([]);  
   useEffect(() => {
   const savedData = localStorage.getItem("audit-form");
 
@@ -73,9 +76,7 @@ useEffect(() => {
 
   const results = runAudit(formattedTools);
 
-  console.log(results);
-
-  alert("Audit generated! Check console for results.");
+  setAuditResults(results);
 };
 
   const updateTool = (
@@ -233,7 +234,12 @@ useEffect(() => {
       >
         Run Free AI Spend Audit
       </button>
+
+      {auditResults.length > 0 && (
+  <AuditResults results={auditResults} />
+)}
+
     </form>
   );
-}
+}    
 
