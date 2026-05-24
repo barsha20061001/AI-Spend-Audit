@@ -1,6 +1,7 @@
 
 "use client";
 import { v4 as uuidv4 } from "uuid";
+import { generateSummary } from "@/lib/generateSummary";
 import { saveAuditResult } from "@/lib/resultStore";
 
 import { runAudit } from "@/lib/audit"; 
@@ -34,6 +35,7 @@ export default function SpendForm() {
   const [teamSize, setTeamSize] = useState("");
   const [useCase, setUseCase] = useState("coding");
   const [auditResults, setAuditResults] = useState<any[]>([]);  
+  const [summary, setSummary] = useState("");
   useEffect(() => {
   const savedData = localStorage.getItem("audit-form");
 
@@ -68,7 +70,7 @@ useEffect(() => {
       },
     ]);
   };
-  const handleAudit = () => {
+  const handleAudit = async () => {
   const formattedTools = tools.map((tool) => ({
     tool: tool.tool,
     plan: tool.plan,
@@ -79,6 +81,22 @@ useEffect(() => {
   const results = runAudit(formattedTools);
 
   setAuditResults(results);
+
+  const totalMonthlySavings = results.reduce(
+  (acc, item) => acc + item.monthlySavings,
+  0
+);
+
+const generatedSummary = await generateSummary({
+  totalMonthlySavings,
+  totalAnnualSavings: totalMonthlySavings * 12,
+  tools: results.map((item) => ({
+    tool: item.tool,
+    recommendation: item.recommendation,
+  })),
+});
+
+setSummary(generatedSummary);
 
 const auditId = uuidv4();
 
@@ -248,7 +266,10 @@ window.history.pushState(
       </button>
 
       {auditResults.length > 0 && (
-  <AuditResults results={auditResults} />
+  <AuditResults
+  results={auditResults}
+  summary={summary}
+/>
 )}
 
     </form>

@@ -23,7 +23,22 @@ export default function AuditPage({
   if (!results.length) {
     return (
       <main className="flex min-h-screen items-center justify-center bg-slate-950 text-white">
-        <p>Audit not found.</p>
+        <div className="text-center">
+  <h1 className="text-3xl font-bold text-white">
+    Audit not found
+  </h1>
+
+  <p className="mt-4 text-slate-300">
+    This audit may have expired or was never generated.
+  </p>
+
+  <a
+    href="/"
+    className="mt-6 inline-block rounded-2xl bg-emerald-400 px-6 py-3 font-semibold text-slate-950 transition hover:bg-emerald-300"
+  >
+    Generate New Audit
+  </a>
+</div>
       </main>
     );
   }

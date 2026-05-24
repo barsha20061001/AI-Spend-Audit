@@ -10,9 +10,13 @@ interface AuditResult {
 
 interface Props {
   results: AuditResult[];
+  summary: string;
 }
 
-export default function AuditResults({ results }: Props) {
+export default function AuditResults({
+  results,
+  summary,
+}: Props) {
   const totalMonthlySavings = results.reduce(
     (acc, item) => acc + item.monthlySavings,
     0
@@ -43,6 +47,9 @@ export default function AuditResults({ results }: Props) {
           ${totalAnnualSavings.toFixed(0)}
         </span>
       </p>
+      <p className="mt-4 text-sm text-slate-400">
+  Generated on {new Date().toLocaleDateString()}
+</p>
     </>
   ) : (
     <>
@@ -79,6 +86,18 @@ export default function AuditResults({ results }: Props) {
   >
     Share on X
   </a>
+</div>
+
+<div className="rounded-3xl border border-white/10 bg-slate-900/60 p-8">
+  <div className="mb-4 flex items-center gap-3">
+    <div className="rounded-full bg-emerald-400/10 px-3 py-1 text-xs font-semibold uppercase tracking-widest text-emerald-300">
+      AI Summary
+    </div>
+  </div>
+
+<p className="leading-8 text-slate-300">
+  {summary || "Generating AI-powered audit summary..."}
+</p>
 </div>
 
       {/* Tool Results */}
