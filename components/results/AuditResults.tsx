@@ -1,3 +1,7 @@
+
+import LeadCapture from "./LeadCapture";
+
+
 interface AuditResult {
   tool: string;
   currentSpend: number;
@@ -177,6 +181,8 @@ export default function AuditResults({
     </button>
   </div>
 )}
+<LeadCapture monthlySavings={totalMonthlySavings} />
+
     </div>
   );
 }
