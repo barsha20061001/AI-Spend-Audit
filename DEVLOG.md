@@ -1,4 +1,20 @@
 # DEVLOG
+## Day 0 — 2026-05-22
+
+**Hours worked:** 2
+
+**What I did:**  
+Initialized the project repository, reviewed the assignment requirements, explored potential product directions, and finalized the initial stack choice using Next.js, TypeScript, and Tailwind CSS. I also completed the initial project setup and GitHub configuration.
+
+**What I learned:**  
+The assignment emphasizes product thinking and consistency much more than traditional coding rounds.
+
+**Blockers / what I'm stuck on:**  
+Still deciding how detailed the audit engine and pricing logic should become while keeping the MVP manageable.
+
+**Plan for tomorrow:**  
+Start building the landing page, spend input flow, and overall project structure.
+
 
 ## Day 1 — 2026-05-23
 
