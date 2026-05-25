@@ -19,13 +19,25 @@ export default function LeadCapture({
   const handleSubmit = async () => {
     if (!email) return;
 
-    const { error } = await supabase.from("leads").insert([
+  const { error } = await supabase.from("leads").insert([
   {
     email,
     company,
     role,
     team_size: Number(teamSize),
     monthly_savings: monthlySavings,
+  },
+]);
+
+await supabase.from("audits").insert([
+  {
+    results: {
+      email,
+      company,
+      role,
+      teamSize,
+      monthlySavings,
+    },
   },
 ]);
 
