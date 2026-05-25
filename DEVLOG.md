@@ -47,3 +47,21 @@ The current share system uses local browser storage, so public links are device-
 
 **Plan for tomorrow:**  
 Implement backend persistence, lead capture flows, and database-backed audit storage with basic abuse protection.
+
+## Day 4 — 2026-05-25
+
+**Hours worked:** 9
+
+**What I did:**  
+Today I focused on both backend integration and engineering reliability. I connected the application to Supabase, configured environment variables, created database tables for leads and audits, and implemented lead capture functionality directly inside the audit flow. I debugged multiple Row Level Security (RLS) and permission issues before successfully verifying frontend-to-database inserts.  
+
+After stabilizing the backend flow, I shifted focus toward engineering quality. I set up Vitest for automated testing, added multiple audit engine test cases covering savings calculations and recommendation logic, and configured GitHub Actions CI to automatically run tests on every push. I also fixed several TypeScript/linting issues and improved overall project stability.
+
+**What I learned:**  
+I learned how backend permissions, RLS policies, and frontend integrations interact in real production-style systems. I also realized how important automated testing and CI pipelines are for maintaining confidence while iterating quickly. Debugging CI workflows taught me that even small environment or linting mismatches can break deployments.
+
+**Blockers / what I'm stuck on:**  
+The biggest challenge today was resolving Supabase permission issues and stabilizing GitHub Actions workflows across different environments while keeping the project structure simple and maintainable.
+
+**Plan for tomorrow:**  
+Finalize deployment, improve documentation, prepare screenshots/demo assets, and practice clearly explaining the architecture and product decisions for interviews and final submission.
