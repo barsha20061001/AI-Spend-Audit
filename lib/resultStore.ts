@@ -1,12 +1,14 @@
+import type { AuditResult } from "./audit";
+
 interface StoredAudit {
   id: string;
   createdAt: string;
-  results: any[];
+  results: AuditResult[];
 }
 
 export const saveAuditResult = (
   id: string,
-  results: any[]
+  results: AuditResult[]
 ) => {
   const existing = JSON.parse(
     localStorage.getItem("saved-audits") || "[]"
