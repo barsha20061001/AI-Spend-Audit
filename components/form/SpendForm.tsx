@@ -123,22 +123,31 @@ window.history.pushState(
 };
 
   const updateTool = (
-    index: number,
-    field: string,
-    value: string
-  ) => {
-    const updated = [...tools];
-    updated[index] = {
-      ...updated[index],
-      [field]: value,
-    };
+  index: number,
+  field: string,
+  value: string
+) => {
+  const updated = [...tools];
 
-    setTools(updated);
+  updated[index] = {
+    ...updated[index],
+    [field]: value,
   };
+
+  // reset plan when tool changes
+  if (field === "tool") {
+    updated[index].plan = "";
+  }
+
+  setTools(updated);
+};
 
 
   return (
-    <form className="space-y-8 text-left">
+    <form
+  onSubmit={(e) => e.preventDefault()}
+  className="space-y-8 text-left"
+>
       {/* Team Details */}
       <div className="grid gap-6 md:grid-cols-2">
         <div>
@@ -205,8 +214,19 @@ window.history.pushState(
                 <select
                   value={tool.tool}
                   onChange={(e) => {
-  updateTool(index, "tool", e.target.value);
-  updateTool(index, "plan", "");
+  const selectedTool = e.target.value;
+
+  setTools((prevTools) =>
+    prevTools.map((item, i) =>
+      i === index
+        ? {
+            ...item,
+            tool: selectedTool,
+            plan: "",
+          }
+        : item
+    )
+  );
 }}
                   className="w-full rounded-xl border border-white/10 bg-slate-950 px-4 py-3 text-white outline-none focus:border-emerald-400"
                 >
