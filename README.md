@@ -235,7 +235,7 @@ tests/audit.test.ts
 
 Deployed on Vercel.
 
-(Add deployment link here)
+(https://ai-spend-audit-sigma-navy.vercel.app/)
 
 ---
 
