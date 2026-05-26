@@ -33,6 +33,9 @@ const planOptions: Record<string, string[]> = {
   Windsurf: ["Free", "Pro", "Teams", "Enterprise"],
 };
 
+
+
+
 export default function SpendForm() {
   const [tools, setTools] = useState([
     {
