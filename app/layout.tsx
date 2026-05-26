@@ -13,6 +13,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata = {
+  metadataBase: new URL("https://ai-spend-audit-sigma-navy.vercel.app"),
   title: "AI Spend Audit",
   description:
     "Analyze AI tool spending and discover cost-saving opportunities instantly.",
@@ -38,28 +39,6 @@ export const metadata = {
     description:
       "Analyze AI tool spending and discover hidden overspending opportunities.",
     images: ["/og-image.png"],
-  },
-};
-
-
-
-export const metadata = {
-  title: "StackSaver AI",
-  description:
-    "Analyze your AI stack, uncover overspending, and discover smarter AI pricing strategies.",
-  openGraph: {
-    title: "StackSaver AI",
-    description:
-      "Free AI Spend Audit for startups and engineering teams.",
-    url: "https://stacksaver-ai.vercel.app",
-    siteName: "StackSaver AI",
-    type: "website",
-  },
-  twitter: {
-    card: "summary_large_image",
-    title: "StackSaver AI",
-    description:
-      "Find wasted AI spend in minutes.",
   },
 };
 
