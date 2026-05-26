@@ -60,7 +60,10 @@ export default function AuditPage({
           </p>
         </div>
 
-        <AuditResults results={results} />
+        <AuditResults
+  results={results}
+  summary="This shareable audit report summarizes the detected AI spend optimization opportunities based on the saved audit results."
+/>
       </div>
     </main>
   );
