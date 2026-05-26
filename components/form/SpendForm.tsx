@@ -47,19 +47,18 @@ export default function SpendForm() {
   const [useCase, setUseCase] = useState("coding");
   const [auditResults, setAuditResults] = useState<any[]>([]);  
   const [summary, setSummary] = useState("");
-  useEffect(() => {
-  const savedData = localStorage.getItem("audit-form");
-
-  if (savedData) {
-    const parsed = JSON.parse(savedData);
-
-    setTeamSize(parsed.teamSize || "");
-    setUseCase(parsed.useCase || "coding");
-    setTools(parsed.tools || tools);
-  }
-}, []);
-
+  
 useEffect(() => {
+const saved = localStorage.getItem("audit-form");
+if (saved) {
+  const parsed = JSON.parse(saved);
+  setTeamSize(parsed.teamSize || "");
+  setUseCase(parsed.useCase || "");
+  setTools(parsed.tools || tools);
+        }
+     }, []);
+
+   useEffect(() => {
   localStorage.setItem(
     "audit-form",
     JSON.stringify({
@@ -68,8 +67,8 @@ useEffect(() => {
       tools,
     })
   );
-}, [teamSize, useCase, tools]);
-
+  }, [teamSize, useCase, tools]);
+   
   const addTool = () => {
     setTools([
       ...tools,
@@ -134,28 +133,6 @@ window.history.pushState(
     setTools(updated);
   };
 
-  useEffect(() => {
-  const saved = localStorage.getItem("audit-form");
-
-  if (saved) {
-    const parsed = JSON.parse(saved);
-
-    setTeamSize(parsed.teamSize || "");
-    setUseCase(parsed.useCase || "");
-    setTools(parsed.tools || tools);
-  }
-}, []);
-
-useEffect(() => {
-  localStorage.setItem(
-    "audit-form",
-    JSON.stringify({
-      teamSize,
-      useCase,
-      tools,
-    })
-  );
-}, [teamSize, useCase, tools]);
 
   return (
     <form className="space-y-8 text-left">
