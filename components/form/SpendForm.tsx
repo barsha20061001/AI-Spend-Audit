@@ -9,6 +9,7 @@ import { runAudit } from "@/lib/audit";
 import AuditResults from "../results/AuditResults";
 
 import { useEffect, useState } from "react";  
+import { useEffect } from "react";
 
 
 const toolOptions = [
@@ -21,6 +22,16 @@ const toolOptions = [
   "Anthropic API",
   "Windsurf",
 ];
+const planOptions: Record<string, string[]> = {
+  Cursor: ["Hobby", "Pro", "Business", "Enterprise"],
+  "GitHub Copilot": ["Individual", "Business", "Enterprise"],
+  Claude: ["Free", "Pro", "Max", "Team", "Enterprise", "API direct"],
+  ChatGPT: ["Plus", "Team", "Enterprise", "API direct"],
+  Gemini: ["Pro", "Ultra", "API"],
+  "OpenAI API": ["API direct"],
+  "Anthropic API": ["API direct"],
+  Windsurf: ["Free", "Pro", "Teams", "Enterprise"],
+};
 
 export default function SpendForm() {
   const [tools, setTools] = useState([
@@ -123,6 +134,29 @@ window.history.pushState(
     setTools(updated);
   };
 
+  useEffect(() => {
+  const saved = localStorage.getItem("audit-form");
+
+  if (saved) {
+    const parsed = JSON.parse(saved);
+
+    setTeamSize(parsed.teamSize || "");
+    setUseCase(parsed.useCase || "");
+    setTools(parsed.tools || tools);
+  }
+}, []);
+
+useEffect(() => {
+  localStorage.setItem(
+    "audit-form",
+    JSON.stringify({
+      teamSize,
+      useCase,
+      tools,
+    })
+  );
+}, [teamSize, useCase, tools]);
+
   return (
     <form className="space-y-8 text-left">
       {/* Team Details */}
@@ -190,9 +224,10 @@ window.history.pushState(
 
                 <select
                   value={tool.tool}
-                  onChange={(e) =>
-                    updateTool(index, "tool", e.target.value)
-                  }
+                  onChange={(e) => {
+  updateTool(index, "tool", e.target.value);
+  updateTool(index, "plan", "");
+}}
                   className="w-full rounded-xl border border-white/10 bg-slate-950 px-4 py-3 text-white outline-none focus:border-emerald-400"
                 >
                   {toolOptions.map((item) => (
@@ -207,15 +242,18 @@ window.history.pushState(
                   Plan
                 </label>
 
-                <input
-                  type="text"
-                  placeholder="e.g. Pro"
-                  value={tool.plan}
-                  onChange={(e) =>
-                    updateTool(index, "plan", e.target.value)
-                  }
-                  className="w-full rounded-xl border border-white/10 bg-slate-950 px-4 py-3 text-white outline-none focus:border-emerald-400"
-                />
+                <select
+  value={tool.plan}
+  onChange={(e) => updateTool(index, "plan", e.target.value)}
+  className="w-full rounded-xl border border-white/10 bg-slate-950 px-4 py-3 text-white"
+>
+  <option value="">Select plan</option>
+  {(planOptions[tool.tool] || []).map((plan) => (
+    <option key={plan} value={plan}>
+      {plan}
+    </option>
+  ))}
+</select>
               </div>
 
               {/* Spend */}

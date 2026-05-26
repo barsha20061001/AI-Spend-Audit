@@ -12,6 +12,34 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 
+export const metadata = {
+  title: "AI Spend Audit",
+  description:
+    "Analyze AI tool spending and discover cost-saving opportunities instantly.",
+  openGraph: {
+    title: "AI Spend Audit",
+    description:
+      "Analyze AI tool spending and discover hidden overspending opportunities.",
+    url: "https://ai-spend-audit-sigma-navy.vercel.app/",
+    siteName: "AI Spend Audit",
+    images: [
+      {
+        url: "/og-image.png",
+        width: 1200,
+        height: 630,
+        alt: "AI Spend Audit",
+      },
+    ],
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "AI Spend Audit",
+    description:
+      "Analyze AI tool spending and discover hidden overspending opportunities.",
+    images: ["/og-image.png"],
+  },
+};
 
 
 

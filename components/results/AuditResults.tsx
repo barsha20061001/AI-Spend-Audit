@@ -160,9 +160,14 @@ export default function AuditResults({
             Credex can help reduce enterprise AI infrastructure costs further.
           </p>
 
-          <button className="mt-6 rounded-2xl bg-emerald-400 px-6 py-3 font-semibold text-slate-950 transition hover:bg-emerald-300">
-            Book Credex Consultation
-          </button>
+          <a
+  href="https://calendly.com/"
+  target="_blank"
+  rel="noopener noreferrer"
+  className="mt-6 inline-block rounded-2xl bg-emerald-400 px-6 py-3 font-semibold text-slate-950"
+>
+  Book Credex Consultation
+</a>
         </div>
       )}
 
