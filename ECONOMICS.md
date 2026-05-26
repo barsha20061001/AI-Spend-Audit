@@ -35,6 +35,7 @@ Cost:
 - Near $0 direct spend
 
 Estimated CAC:
+
 ```text
 $20–50
 ```
@@ -48,6 +49,7 @@ Cost:
 - Mostly preparation time
 
 Estimated CAC:
+
 ```text
 $50–150
 ```
@@ -63,6 +65,7 @@ Writing:
 - “best AI coding stack” content
 
 Estimated CAC:
+
 ```text
 $100–250 initially
 ```
@@ -75,6 +78,7 @@ but decreases over time if SEO compounds.
 Because audit pages are shareable, CAC here could become extremely low.
 
 Estimated CAC:
+
 ```text
 <$20
 ```
@@ -101,11 +105,13 @@ Math:
 ```
 
 If average LTV is:
+
 ```text
 $3000
 ```
 
 then:
+
 ```text
 2 customers = $6000 revenue
 3 customers = $9000 revenue
@@ -118,11 +124,13 @@ At low CAC channels, this becomes profitable relatively quickly.
 ## What Needs To Be True For $1M ARR?
 
 Target:
+
 ```text
 $1,000,000 ARR
 ```
 
 Assume:
+
 ```text
 $300/month average revenue per customer
 ```

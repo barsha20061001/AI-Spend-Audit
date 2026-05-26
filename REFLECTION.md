@@ -1,101 +1,72 @@
 # REFLECTION
 
-## 1. What would you improve if you had 2 more weeks?
+## 1. Hardest bug I hit this week
 
-If I had two additional weeks, the first thing I would improve is the intelligence of the recommendation engine. Right now the system uses deterministic pricing and optimization rules because I wanted recommendations to remain explainable and predictable. But with more time, I would build a hybrid approach where AI explains the recommendation while the pricing math still stays deterministic underneath.
+The hardest bug I hit was the Supabase permission issue during lead capture. The frontend form looked correct, but when I submitted data, the app kept showing “permission denied for table leads.” Initially I thought the problem was in my Supabase URL or anon key, because the request was reaching Supabase but still failing.
 
-I would also improve the onboarding and audit UX. During testing, I realized users hesitate when manually entering AI spend data because most people do not actually know how much they spend monthly across subscriptions and APIs. I would solve this by integrating billing imports from Stripe, GitHub, OpenAI, or Google Workspace to automatically estimate spend.
+Then I checked the browser console and Supabase table editor more carefully. What I found was that the table existed, but Row Level Security was blocking public inserts. I tried creating policies manually through Supabase, but the issue still continued because I had enabled RLS without creating the exact insert policy for the anon role.
 
-Another major improvement would be historical spend tracking. Currently the app focuses on one-time audits and shared reports. With more time, I would build recurring monitoring where teams receive alerts when their AI costs suddenly spike or when new pricing plans become cheaper.
+The fix was to create a proper insert policy for the `leads` table and verify it by submitting the live form again. Once I saw the row appear in Supabase, I knew the frontend-to-backend flow was working.
 
-I would also add role-based dashboards for engineering managers and finance teams. One surprising thing I learned while doing interviews is that developers care about productivity while managers care about predictability and cost visibility. The current version is more optimized for individual users than organizations.
-
-Finally, I would improve production hardening. The app already has tests, CI/CD, deployment, and database integration, but I would add stronger abuse protection, transactional emails, analytics dashboards, and more complete observability.
+One thing I learned is that backend permission bugs can look like frontend bugs at first. In this case, the UI was fine, but the database security layer was rejecting the request.
 
 ---
 
-## 2. What was the hardest technical decision?
+## 2. A decision I reversed mid-week
 
-The hardest technical decision was deciding how much AI should actually be used in the product.
+Initially I wanted the audit recommendations to feel very “AI-powered.” My first thought was that the AI should generate most of the recommendation logic. But while building the project, I realized that this would be risky because AI can produce inconsistent or vague pricing suggestions.
 
-Initially I thought the audit recommendations themselves should be fully AI-generated. But after researching pricing models, I realized that AI-generated savings calculations could easily become inconsistent or hallucinate recommendations that were not financially accurate.
+Since the product deals with money, savings, and plan recommendations, the logic needed to be explainable. A user should be able to understand why a tool is being flagged as overpriced or why a downgrade is suggested.
 
-Because this product deals with pricing and cost optimization, explainability mattered more than creativity. So I redesigned the architecture around deterministic audit rules and used AI mainly for summarization and explanation layers.
+So I reversed the decision and made the audit engine deterministic. The pricing and savings calculations now come from rule-based logic, while AI is only used for summarizing the result in a more readable way.
 
-For example:
-- pricing comparisons are rule-based
-- savings calculations are deterministic
-- optimization suggestions follow predefined thresholds
-- AI is used to generate human-readable summaries
+This made the project easier to test too. The Vitest tests can check whether savings calculations and recommendations work correctly because the output is predictable.
 
-This decision made the product more reliable and easier to test. It also simplified unit testing because outputs became predictable.
-
-Another difficult decision was balancing scope vs quality. The PDF had many requirements across product thinking, engineering, GTM, metrics, economics, deployment, and documentation. I had to avoid overengineering features and instead prioritize a stable end-to-end product.
+That reversal made the product stronger because it separated financial logic from natural language explanation.
 
 ---
 
-## 3. What did you learn from user interviews?
+## 3. What I would build in week 2
 
-The biggest thing I learned is that most users do not intentionally optimize AI spending. They usually accumulate subscriptions over time without periodically reevaluating whether they still need them.
+In week 2, I would first improve the backend and make the audit storage more complete. Right now the MVP stores leads and audit-related data, but a production version should have cleaner audit history, user sessions, and a proper dashboard.
 
-One interviewee mentioned paying for both ChatGPT Plus and Claude Pro while mainly using only one of them regularly. Another user had a high-tier coding assistant plan mainly because “everyone on the team used it,” even though their actual usage was limited.
+I would also add real transactional email using Resend or Postmark. The current architecture documents this flow, but a production version should send users a confirmation email with their audit link and savings summary.
 
-I also learned that users do not want raw pricing spreadsheets. They want actionable recommendations with minimal friction. People preferred statements like:
-- “You can probably downgrade safely”
-- “Your current setup already looks efficient”
-- “This API spend looks unusually high for your team size”
+Another thing I would build is a benchmark mode. For example, the app could show “your AI spend per developer is $X” and compare it against similar startups. That would make the recommendation feel more useful than just showing raw savings.
 
-instead of large financial dashboards.
+I would also improve the LLM summary by connecting it to a real production LLM provider with better fallback handling. The math should stay deterministic, but the explanation could become more personalized.
 
-Another important learning was trust. Several interviewees said they would not blindly trust AI-generated savings recommendations unless the logic was transparent. That directly influenced the design of the recommendation engine and why I chose deterministic rules for pricing decisions.
-
-Finally, interviews changed my thinking about positioning. Initially I thought the product was mainly for developers, but conversations suggested that engineering managers and startup founders may actually feel the strongest pain around AI cost visibility.
+Finally, I would add analytics events for audit started, audit completed, lead submitted, and share link copied. That would help understand where users drop off.
 
 ---
 
-## 4. What would make this a real business?
+## 4. How I used AI tools
 
-For this to become a real business, the biggest requirement would be automatic data integrations.
+I used AI tools mainly as a coding assistant and debugging helper. I used ChatGPT to break down the assignment requirements, plan the project structure, write initial documentation drafts, and debug errors during implementation.
 
-Right now users manually enter spend information, which works for validation and demos but does not scale well for long-term retention. Real companies would expect integrations with:
-- OpenAI billing
-- Anthropic API billing
-- GitHub
-- Stripe
-- Google Workspace
-- AWS/GCP/Azure invoices
+I did not blindly trust AI for the pricing logic. Since pricing accuracy matters in this assignment, I treated AI suggestions as drafts and manually checked whether the logic made sense. I also used deterministic rules instead of asking AI to calculate savings directly.
 
-Once spend data becomes automated, the product becomes much more valuable because users can continuously monitor costs instead of running one-time audits.
+One specific time AI was wrong was during the GitHub Actions and lint setup. The first CI workflow looked fine, but it failed because lint errors were stricter in CI than expected. I had to inspect the actual GitHub Actions logs and adjust the workflow based on the real error instead of just trusting the generated setup.
 
-The second important requirement would be benchmarking. Companies want context, not just numbers. A real business version should answer questions like:
-- “Are we overspending compared to similar startups?”
-- “What is normal AI spend per engineer?”
-- “Which tools provide the best ROI?”
+AI was useful for speed, but I still had to verify code, test behavior locally, and check the deployed app manually.
 
-Another growth opportunity would be procurement optimization. Instead of only suggesting downgrades, the platform could negotiate enterprise credits, recommend bundled contracts, or surface promotional pricing opportunities.
-
-I also think the strongest monetization model would probably be B2B SaaS rather than consumer subscriptions. Small engineering teams and startups seem more likely to pay for recurring monitoring, optimization alerts, and reporting dashboards.
+Overall, AI helped me move faster, but the final decisions around architecture, pricing logic, and tradeoffs were made by checking what the product actually needed.
 
 ---
 
-## 5. What are you most proud of?
+## 5. Self-rating
 
-I am most proud that the project became a complete end-to-end product instead of just a prototype UI.
+### Discipline — 9/10
+I worked across multiple days, pushed progress regularly, and kept improving the project after each issue instead of stopping at the first working version.
 
-The final system includes:
-- real deployment
-- CI/CD workflow
-- automated tests
-- database integration
-- public shareable audit pages
-- lead capture
-- AI-generated summaries
-- pricing research
-- documentation
-- product strategy artifacts
+### Code quality — 8/10
+The code is readable and typed, with separated audit logic and tests, but some parts could be cleaner if I had more time.
 
-One thing I particularly liked was solving the deployment and build stability issues near the end. I ran into multiple GitHub Actions failures, TypeScript build issues, and deployment memory problems. Initially I underestimated how much time production hardening would take compared to feature development.
+### Design sense — 8/10
+The UI is polished enough for an MVP and the results page feels shareable, but I would improve spacing, screenshots, and mobile polish further.
 
-I am also proud that the project balances engineering and product thinking. The assignment was not only about coding — it also required understanding user pain points, business viability, pricing logic, and growth strategy.
+### Problem-solving — 9/10
+I debugged Supabase RLS issues, CI failures, deployment problems, and TypeScript errors by checking logs and narrowing down causes step by step.
 
-Overall, I think the strongest part of the project is that it feels like a believable early-stage SaaS product rather than only an internship assignment submission.
+### Entrepreneurial thinking — 8/10
+I tried to think beyond code by writing GTM, economics, metrics, user interviews, and positioning the tool as a real lead-generation product for Credex.

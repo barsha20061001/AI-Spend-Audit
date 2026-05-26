@@ -1,72 +1,66 @@
 # ARCHITECTURE
 
-## Stack Choice
-
-I chose Next.js with TypeScript and Tailwind CSS because the assignment requires:
-- Shareable public URLs
-- Strong SEO/Open Graph support
-- Fast UI iteration
-- Good developer experience
-- Easy deployment on Vercel
-
-TypeScript was chosen to make the audit engine safer and easier to test.
-
-Tailwind CSS allows fast custom UI development without relying on prebuilt admin templates.
-
-## Planned Backend
-
-- Frontend: Next.js
-- Database: Supabase PostgreSQL
-- Email Service: Resend
-- Deployment: Vercel
-- AI Summary Generation: Anthropic or OpenAI API
-
-## Planned Data Flow
+## System Diagram
 
 ```mermaid
 flowchart TD
+    A[Visitor lands on homepage] --> B[Spend Input Form]
+    B --> C[Audit Engine]
+    C --> D[Audit Results Page]
+    D --> E[AI Summary Generator]
+    D --> F[Lead Capture Form]
+    F --> G[Supabase Leads Table]
+    D --> H[Shareable Public Audit URL]
+    H --> I[Public Audit Page]
+```
 
-A[User Opens Landing Page]
---> B[Inputs AI Tools + Spend Data]
+## Data Flow
 
-B --> C[Audit Engine]
+1. A visitor opens the landing page and starts the audit.
+2. The user enters AI tools, plan, monthly spend, number of seats, team size, and use case.
+3. Form state persists locally so the user does not lose progress on reload.
+4. The audit engine evaluates each tool using deterministic pricing and usage-fit rules.
+5. The results page displays total monthly and annual savings.
+6. A personalized summary is generated from the audit result, with fallback text if the AI provider fails.
+7. After seeing value, the user can submit email, company, role, and team size.
+8. Lead data is stored in Supabase.
+9. Each audit can be opened through a public shareable URL.
+10. Public audit pages strip identifying user details and only show tools, savings, and recommendations.
 
-C --> D[Calculate Savings]
-C --> E[Generate Recommendations]
+## Stack Choice
 
-D --> F[Audit Results Page]
-E --> F
+### Next.js
+I chose Next.js because it supports routing, metadata, server/client components, and deployment to Vercel with minimal setup. It is also a practical choice for building a public SaaS-style MVP quickly.
 
-F --> G[AI Summary Generator]
+### React
+React made it easier to split the product into reusable components such as the spend form, audit results, and lead capture section.
 
-G --> H[Display Final Audit]
+### TypeScript
+TypeScript was used because the audit engine deals with structured data and pricing logic. Types help reduce mistakes when handling tools, plans, spend, and recommendations.
 
-H --> I[Lead Capture Form]
+### Tailwind CSS
+Tailwind was chosen for fast styling without using a prebuilt website builder or admin dashboard template.
 
-I --> J[Store in Database]
-I --> K[Send Confirmation Email]
+### Supabase
+Supabase was used as the backend because it provides a real database, table editor, API access, and Row Level Security policies quickly.
 
-H --> L[Generate Shareable Public URL]
+### Vitest
+Vitest was used for testing because the audit engine is pure logic and can be tested without rendering the full UI.
 
+### GitHub Actions
+GitHub Actions runs automated checks on push so the repository has visible CI history.
 
+## Audit Engine Design
 
-## Transactional Email
+The audit engine is deterministic. This means savings calculations are handled by rules instead of AI.
 
-The intended transactional email flow is:
+This was intentional because:
+- pricing math should be explainable
+- recommendations should be testable
+- financial outputs should not hallucinate
+- unit tests can verify savings behavior
 
-1. User completes audit.
-2. User submits email after seeing audit value.
-3. Lead data is stored in Supabase.
-4. A confirmation email is sent through a transactional email provider such as Resend, Postmark, or AWS SES.
-
-For this submission, Supabase persistence and lead capture are fully implemented. The transactional email integration is documented as the next production-ready step because email delivery requires verified sender/domain configuration and provider setup.
-
-The planned email contents include:
-- audit completion confirmation
-- estimated savings summary
-- public audit report link
-- Credex consultation CTA for high-savings cases
-
+AI is used only for summary generation, not for core savings math.
 
 ## Abuse Protection
 
@@ -76,7 +70,55 @@ The hidden field is invisible to normal users but may be filled by automated bot
 
 This approach was chosen because:
 - it adds zero friction for users
-- requires no external CAPTCHA service
-- works well for lightweight MVP-style products
-- keeps the onboarding flow simple
+- it does not require CAPTCHA
+- it works well for lightweight MVP products
+- it keeps onboarding simple
 
+## Transactional Email
+
+The intended transactional email flow is:
+
+1. User completes the audit.
+2. User submits email after seeing audit value.
+3. Lead data is stored in Supabase.
+4. A confirmation email is sent through a transactional email provider such as Resend, Postmark, or AWS SES.
+
+For this submission, Supabase persistence and lead capture are implemented. Transactional email is documented as the next production-ready step because email delivery requires verified sender/domain setup.
+
+The planned email contents include:
+- audit completion confirmation
+- estimated savings summary
+- public audit report link
+- Credex consultation CTA for high-savings cases
+
+## What I Would Change For 10k Audits Per Day
+
+If the product needed to handle 10k audits per day, I would change:
+
+1. Move audit persistence fully to backend routes instead of relying heavily on frontend/localStorage.
+2. Add rate limiting at the API layer.
+3. Add database indexing for audit IDs and created timestamps.
+4. Add server-side validation for all submitted data.
+5. Use background jobs for email sending and AI summary generation.
+6. Add observability through logs, metrics, and error tracking.
+7. Cache public audit pages where possible.
+8. Add authentication for dashboard-style features.
+9. Add queue-based processing for high-volume lead capture.
+10. Separate public audit reads from private lead data more strictly.
+
+## Key Tradeoffs
+
+### 1. Deterministic audit logic over AI-generated logic
+I chose deterministic rules for financial recommendations because savings math should be defensible.
+
+### 2. Manual input over billing integrations
+Manual input keeps the MVP simple and avoids OAuth/API complexity.
+
+### 3. Supabase over custom backend
+Supabase gave real persistence quickly without building a full backend server.
+
+### 4. Honeypot over CAPTCHA
+A honeypot prevents simple bot submissions without hurting UX.
+
+### 5. Public URLs over login-required reports
+Shareable public URLs support the viral loop and keep the product frictionless.
