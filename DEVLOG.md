@@ -1,5 +1,5 @@
 # DEVLOG
-## Day 0 — 2026-05-22
+## Day 1 — 2026-05-22
 
 **Hours worked:** 2
 
@@ -16,7 +16,7 @@ Still deciding how detailed the audit engine and pricing logic should become whi
 Start building the landing page, spend input flow, and overall project structure.
 
 
-## Day 1 — 2026-05-23
+## Day 2 — 2026-05-23
 
 **Hours worked:** 4
 
@@ -32,7 +32,7 @@ The biggest challenge currently is designing audit logic that feels financially 
 **Plan for tomorrow:**  
 Build the pricing data structure, create the first version of the audit engine, and support multiple AI tools dynamically in the form. I also plan to start writing automated tests for the savings calculations.
 
-## Day 2 — 2026-05-24
+## Day 3 — 2026-05-24
 
 **Hours worked:** 5
 
@@ -48,7 +48,7 @@ The biggest challenge is balancing simplicity with credibility. I don’t want t
 **Plan for tomorrow:**  
 Implement shareable audit result pages, improve the visual polish of the results dashboard, and add AI-generated personalized summaries with fallback handling.
 
-## Day 3 — 2026-05-25
+## Day 4 — 2026-05-25
 
 **Hours worked:** 5
 
@@ -64,7 +64,7 @@ The current share system uses local browser storage, so public links are device-
 **Plan for tomorrow:**  
 Implement backend persistence, lead capture flows, and database-backed audit storage with basic abuse protection.
 
-## Day 4 — 2026-05-25
+## Day 5 — 2026-05-25
 
 **Hours worked:** 9
 
@@ -82,72 +82,13 @@ The biggest challenge today was resolving Supabase permission issues and stabili
 **Plan for tomorrow:**  
 Finalize deployment, improve documentation, prepare screenshots/demo assets, and practice clearly explaining the architecture and product decisions for interviews and final submission.
 
-# Day 5 – Testing, CI/CD, Deployment 
 
-## What I Worked On
-Today I focused on making the AI Spend Audit project production-ready by adding automated testing, CI workflow, deployment setup, and fixing final frontend issues.
+## Day 6 — 2026-05-26
+**Hours worked:** 3
+**What I did:** Improved documentation, pricing sources, user interviews, and product/business files.
+**What I learned:** Documentation quality matters as much as code in this assignment.
+**Blockers / what I'm stuck on:** Final verification still needs screenshots and Lighthouse checks.
+**Plan for tomorrow:** Final screenshots, README polish, Lighthouse check, and submission.
 
----
 
-## Testing & CI/CD
-- Created audit engine unit tests using Vitest
-- Added GitHub Actions CI workflow
-- Fixed multiple linting and TypeScript issues
-- Resolved failing GitHub Actions workflow errors
-- Verified all tests pass successfully
 
-### Test Coverage Added
-- Detects ChatGPT Team overspend
-- Detects GitHub Copilot Enterprise overspend
-- Detects Cursor Business downgrade opportunities
-- Calculates annual savings correctly
-- Returns optimized state for healthy spend
-
----
-
-## Deployment
-- Connected GitHub repository with Vercel
-- Added Supabase environment variables
-- Fixed deployment build/type issues
-- Solved Turbopack/Webpack memory issues
-- Successfully deployed production version
-
-### Live Deployment
-https://ai-spend-audit-sigma-navy.vercel.app/
-
----
-
-## Frontend & UX Improvements
-- Fixed “Copy Shareable Link” functionality
-- Added waitlist/join notification interaction
-- Improved result page interaction flow
-- Fixed public audit share page rendering
-- Verified responsive/mobile layout
-
----
-
-## Documentation Updates
-Updated:
-- README.md
-- DEVLOG.md
-- TESTS.md
-- USER_INTERVIEWS.md
-
----
-
-## Key Learnings
-- GitHub Actions debugging and CI setup
-- Handling Next.js deployment errors
-- Managing environment variables securely
-- Fixing TypeScript production build issues
-- Importance of testing before deployment
-
----
-
-## Final Status
-✅ Tests passing  
-✅ CI workflow working  
-✅ Supabase integration working  
-✅ Deployment successful  
-✅ Public audit links working  
-✅ Submission-ready build completed

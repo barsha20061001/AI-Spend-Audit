@@ -1,49 +1,160 @@
-# ARCHITECTURE
+# PRICING_DATA
 
-## Stack Choice
+Pricing verified: 2026-05-26  
+Currency: USD unless otherwise stated.
 
-I chose Next.js with TypeScript and Tailwind CSS because the assignment requires:
-- Shareable public URLs
-- Strong SEO/Open Graph support
-- Fast UI iteration
-- Good developer experience
-- Easy deployment on Vercel
+> Note: Enterprise plans are treated as “custom/contact sales” when the vendor does not publish fixed self-serve pricing. API pricing is usage-based, so the audit engine uses user-entered monthly spend and compares it against optimization rules rather than assuming a fixed subscription price.
 
-TypeScript was chosen to make the audit engine safer and easier to test.
+---
 
-Tailwind CSS allows fast custom UI development without relying on prebuilt admin templates.
+## Cursor
 
-## Planned Backend
+Source: https://cursor.com/pricing  
+Verified: 2026-05-26
 
-- Frontend: Next.js
-- Database: Supabase PostgreSQL
-- Email Service: Resend
-- Deployment: Vercel
-- AI Summary Generation: Anthropic or OpenAI API
+- Hobby / Free: $0/month
+- Pro: $20/month
+- Business: $40/user/month
+- Enterprise: Custom / contact sales
 
-## Planned Data Flow
+Notes:
+Cursor’s pricing page describes self-serve plans and directs invoice-based or enterprise billing to sales.
 
-```mermaid
-flowchart TD
+---
 
-A[User Opens Landing Page]
---> B[Inputs AI Tools + Spend Data]
+## GitHub Copilot
 
-B --> C[Audit Engine]
+Sources:
+- https://github.com/features/copilot/plans
+- https://docs.github.com/en/copilot/get-started/plans
+- https://docs.github.com/copilot/get-started/choosing-your-enterprises-plan-for-github-copilot
 
-C --> D[Calculate Savings]
-C --> E[Generate Recommendations]
+Verified: 2026-05-26
 
-D --> F[Audit Results Page]
-E --> F
+- Free: $0/month
+- Copilot Pro: $10/user/month
+- Copilot Pro+: $39/user/month
+- Copilot Business: $19/user/month
+- Copilot Enterprise: $39/user/month
 
-F --> G[AI Summary Generator]
+Notes:
+The audit engine maps:
+- Individual → Copilot Pro: $10/user/month
+- Business → $19/user/month
+- Enterprise → $39/user/month
 
-G --> H[Display Final Audit]
+---
 
-H --> I[Lead Capture Form]
+## Claude
 
-I --> J[Store in Database]
-I --> K[Send Confirmation Email]
+Sources:
+- https://claude.com/pricing
+- https://support.claude.com/en/articles/11049762-choose-a-claude-plan
 
-H --> L[Generate Shareable Public URL]
+Verified: 2026-05-26
+
+- Free: $0/month
+- Pro: $20/month
+- Max 5x: $100/month
+- Max 20x: $200/month
+- Team: vendor-listed team plan / per-seat pricing varies by plan and billing
+- Enterprise: Custom / contact sales
+
+Notes:
+Claude API is billed separately from Claude subscription plans.
+
+---
+
+## Claude / Anthropic API Direct
+
+Source: https://platform.claude.com/docs/en/about-claude/pricing  
+Verified: 2026-05-26
+
+Representative API pricing:
+- Claude Haiku 4.5: $1 / million input tokens, $5 / million output tokens
+- Claude Sonnet 4.6: usage-based pricing listed on Anthropic’s official API pricing page
+- Claude Opus 4.7: $5 / million input tokens, $25 / million output tokens
+
+Notes:
+The audit engine treats Anthropic API direct as usage-based and evaluates user-entered monthly API spend rather than assuming a fixed seat price.
+
+---
+
+## ChatGPT
+
+Sources:
+- https://chatgpt.com/pricing/
+- https://openai.com/business/chatgpt-pricing/
+- https://help.openai.com/en/articles/6950777-what-is-chatgpt-plus
+
+Verified: 2026-05-26
+
+- Free: $0/month
+- Plus: $20/user/month
+- Business / Team-style plan: priced per user per month on OpenAI pricing page
+- Enterprise: Custom / contact sales
+- API direct: billed separately from ChatGPT subscriptions
+
+Notes:
+The audit engine maps small-team paid usage to the $20/user/month Plus benchmark unless the user enters higher team or API spend.
+
+---
+
+## OpenAI API Direct
+
+Source: https://openai.com/api/pricing/  
+Verified: 2026-05-26
+
+Representative API pricing:
+- API pricing is token-based and varies by model.
+- OpenAI states API billing is separate from ChatGPT subscriptions.
+- The audit engine uses user-entered monthly API spend and flags unusually high API spend relative to team size or use case.
+
+Notes:
+Because OpenAI API costs vary heavily by model and volume, fixed monthly pricing is not assumed.
+
+---
+
+## Gemini
+
+Sources:
+- https://gemini.google/subscriptions/
+- https://one.google.com/intl/en_in/about/google-ai-plans/
+- https://ai.google.dev/gemini-api/docs/pricing
+
+Verified: 2026-05-26
+
+- Gemini / Google AI Pro: subscription pricing varies by region
+- Google AI Ultra: subscription pricing varies by region and tier
+- Gemini API: usage-based pricing through Google AI Developer API
+
+Notes:
+The audit engine treats Gemini Pro / Ultra as subscription-style plans and Gemini API as usage-based.
+
+---
+
+## Windsurf
+
+Source: https://windsurf.com/pricing  
+Verified: 2026-05-26
+
+- Free: $0/month
+- Pro: $20/month
+- Max: $200/month
+- Teams: $40/user/month
+- Enterprise: Custom / contact sales
+
+Notes:
+Windsurf was selected as the required additional AI coding tool beyond the minimum list.
+
+---
+
+# How pricing is used in the audit engine
+
+The audit engine uses these numbers to estimate whether:
+- the user is on a plan too expensive for their team size
+- the user could downgrade to a cheaper plan from the same vendor
+- API spend appears high relative to team size and use case
+- a team is spending enough that discounted AI credits or a Credex consultation may be relevant
+
+The audit engine intentionally uses deterministic rules for savings calculations instead of AI-generated math, because pricing recommendations need to be explainable and defensible.

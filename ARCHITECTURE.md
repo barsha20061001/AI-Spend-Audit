@@ -47,3 +47,36 @@ I --> J[Store in Database]
 I --> K[Send Confirmation Email]
 
 H --> L[Generate Shareable Public URL]
+
+
+
+## Transactional Email
+
+The intended transactional email flow is:
+
+1. User completes audit.
+2. User submits email after seeing audit value.
+3. Lead data is stored in Supabase.
+4. A confirmation email is sent through a transactional email provider such as Resend, Postmark, or AWS SES.
+
+For this submission, Supabase persistence and lead capture are fully implemented. The transactional email integration is documented as the next production-ready step because email delivery requires verified sender/domain configuration and provider setup.
+
+The planned email contents include:
+- audit completion confirmation
+- estimated savings summary
+- public audit report link
+- Credex consultation CTA for high-savings cases
+
+
+## Abuse Protection
+
+A honeypot field is implemented in the lead capture form as lightweight abuse protection.
+
+The hidden field is invisible to normal users but may be filled by automated bots. If the honeypot field contains any value, the submission is ignored before database insertion.
+
+This approach was chosen because:
+- it adds zero friction for users
+- requires no external CAPTCHA service
+- works well for lightweight MVP-style products
+- keeps the onboarding flow simple
+

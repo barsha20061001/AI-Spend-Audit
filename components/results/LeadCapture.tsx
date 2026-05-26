@@ -11,6 +11,7 @@ export default function LeadCapture({
   monthlySavings,
 }: Props) {
   const [email, setEmail] = useState("");
+  const [website, setWebsite] = useState("");
   const [company, setCompany] = useState("");
   const [role, setRole] = useState("");
   const [teamSize, setTeamSize] = useState("");
@@ -18,6 +19,7 @@ export default function LeadCapture({
 
   const handleSubmit = async () => {
     if (!email) return;
+    if (website) return;
 
   const { error } = await supabase.from("leads").insert([
   {
@@ -73,6 +75,16 @@ setSubmitted(true);
       <p className="mt-3 text-slate-300">
         Get future optimization alerts and AI pricing updates.
       </p>
+
+      <input
+  type="text"
+  value={website}
+  onChange={(e) => setWebsite(e.target.value)}
+  className="hidden"
+  tabIndex={-1}
+  autoComplete="off"
+  aria-hidden="true"
+/>
 
       <div className="mt-6 grid gap-4 md:grid-cols-2">
         <input

@@ -1,82 +1,140 @@
 # GTM
 
-## Target Users
+## Exact Target User
 
-### Primary Audience
-- Startup founders
-- Small engineering teams
-- AI-heavy SaaS companies
-- Agencies using multiple AI subscriptions
+The primary target user is:
+- Engineering managers or technical founders
+- At seed to Series A startups
+- Teams of 5–40 people
+- Already spending meaningfully on AI tooling
 
-### Secondary Audience
-- Indie hackers
-- Product managers
-- AI consultants
-- CTOs evaluating AI costs
+The strongest-fit companies are startups where:
+- developers use multiple AI coding tools
+- AI APIs are already part of workflows
+- nobody owns AI cost visibility centrally
 
----
+This product is less useful for enterprises with dedicated procurement teams and less useful for solo users spending only $20/month.
 
-## Problem
-
-Many teams rapidly adopt AI tools without visibility into:
-- overlapping subscriptions
-- unnecessary enterprise plans
-- inefficient API spending
-- unused seats
-
-This creates hidden operational waste.
+The ideal user is someone who:
+- approved AI tooling quickly during growth
+- now notices the monthly bill increasing
+- wants optimization without slowing teams down
 
 ---
 
-## Positioning
+## What They Search Before Wanting This
 
-“StackSaver AI helps startups quickly identify unnecessary AI spend and optimize their tooling stack before costs scale.”
+Users usually do not wake up searching for “AI spend audit.”
+
+Instead, the trigger moment happens after:
+- seeing unexpectedly high OpenAI or Anthropic bills
+- realizing multiple developers bought overlapping tools
+- debating whether enterprise plans are worth it
+- trying to reduce startup burn rate
+
+Likely searches:
+- “reduce OpenAI API costs”
+- “Cursor vs Copilot pricing”
+- “best AI coding assistant for teams”
+- “AI tools startup cost”
+- “ChatGPT Team worth it”
+- “how much do startups spend on AI tools”
 
 ---
 
-## Distribution Strategy
+## Where They Hang Out Online
 
-### 1. Product-Led Growth
-Users receive instant value through free audits without signup friction.
+Communities where these users already discuss tooling and cost decisions:
 
-### 2. Social Sharing
-Shareable audit URLs encourage organic distribution.
+### Reddit
+- r/startups
+- r/SaaS
+- r/LocalLLaMA
+- r/ChatGPTCoding
+- r/SideProject
 
-### 3. Founder Communities
-Launch in:
-- Product Hunt
+### Twitter / X
+- Indie hacker founders
+- AI engineering circles
+- Startup CTOs
+- “build in public” communities
+
+### Discord / Slack
 - Indie Hackers
-- Reddit startup communities
-- LinkedIn founder circles
+- AI engineer Discords
+- SaaS founder groups
+- Y Combinator founder communities
+- Product Hunt maker groups
 
-### 4. SEO
-Target keywords:
-- AI cost optimization
-- reduce ChatGPT spend
-- AI SaaS audit
-- Cursor pricing alternatives
-
----
-
-## Monetization Ideas
-
-### Free Tier
-- basic audit
-- limited recommendations
-
-### Paid Tier
-- deeper AI infrastructure analysis
-- procurement recommendations
-- multi-team dashboards
-- API spend optimization reports
-
-### Enterprise
-- custom AI vendor negotiation
-- spend forecasting
-- centralized AI governance
+### Other
+- Hacker News
+- Product Hunt
+- Founder LinkedIn posts
+- AI tooling newsletters
 
 ---
 
-## Why This Could Work
+## How I Would Get the First 100 Users With $0
 
-AI tooling adoption is increasing rapidly, but spend visibility remains fragmented. Even small monthly savings become meaningful for startups operating with tight budgets.
+The strategy would focus on distribution through existing founder conversations rather than paid acquisition.
+
+### Step 1 — Build Shareable Audits
+The public audit URL is intentionally designed to be shareable. If someone discovers they are wasting $600/month on AI tools, they will naturally share the screenshot or link internally.
+
+### Step 2 — Founder Outreach
+I would manually DM:
+- startup founders
+- engineering leads
+- indie hackers
+
+with short personalized messages offering a free AI spend audit.
+
+### Step 3 — Launch in Founder Communities
+Post:
+- “We found $X/month in unnecessary AI spend”
+- before/after examples
+- optimization breakdowns
+
+inside Reddit, Hacker News, and Indie Hackers discussions.
+
+### Step 4 — Build in Public
+Post short audit examples and insights on X:
+- “Most 5-person startups don’t need ChatGPT Team”
+- “We found overlapping Cursor + Copilot subscriptions”
+- “API spend often grows silently”
+
+This creates curiosity-driven traffic.
+
+### Step 5 — Lightweight SEO
+Write short blog posts targeting:
+- AI pricing comparisons
+- AI tooling ROI
+- startup AI spend optimization
+
+---
+
+## Unfair Distribution Advantage
+
+Credex already operates inside the AI infrastructure ecosystem and understands where overspending happens.
+
+Unlike generic finance tools, Credex has:
+- direct awareness of AI tooling economics
+- relationships around discounted credits
+- incentive alignment with reducing waste
+
+That makes the audit recommendations more credible than generic budgeting software.
+
+---
+
+## What Week-1 Traction Looks Like
+
+If the launch works, realistic week-1 numbers might be:
+
+- 1,500–3,000 landing page visitors
+- 300–500 completed audits
+- 15–25% lead capture rate
+- 30–50 high-savings audits
+- 5–10 consultation requests
+
+The most important early metric would not be traffic — it would be:
+“How many users discover surprisingly large savings opportunities and share the audit?”

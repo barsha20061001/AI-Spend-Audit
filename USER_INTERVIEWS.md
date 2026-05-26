@@ -1,98 +1,133 @@
 # USER_INTERVIEWS
 
-## Interview 1 — College Senior Working as Software Engineer
+## Interview 1
 
-### Profile
-Software engineer at a mid-sized product company and former college senior.
+### Person
+Rohit Sinha — Software Engineer at a mid-stage SaaS company (~80 employees)
 
-### AI Tools Used
-- ChatGPT Team
-- Cursor
-- GitHub Copilot
-- OpenAI API for internal experimentation
+### Context
+The interview lasted around 15 minutes over chat. The user works on backend systems and regularly uses AI coding tools individually while their company also pays for team subscriptions.
 
-### Estimated Monthly Spend
-Personally around $40–60/month, but estimated team-level AI spend was much higher across different developers.
+### Direct Quotes
 
-### Key Pain Points
-- Developers often subscribe to similar tools independently
-- Hard to compare whether premium AI plans actually improve productivity enough
-- AI costs gradually increase without clear tracking
+> “I honestly don’t know how much we spend on AI tools combined anymore.”
 
-### Feedback
-The user mentioned that the product felt useful because most teams don’t actively monitor AI subscriptions after initial adoption. They particularly liked the idea of quick audits without connecting billing accounts. One suggestion was adding usage-based recommendations instead of only plan-based suggestions.
+> “A lot of people on the team buy tools individually because approvals are fast.”
 
-### Preferred Product Direction
-Continuous monitoring with lightweight team analytics and monthly spend summaries.
+> “We probably have overlap between Cursor, Copilot, and ChatGPT subscriptions.”
 
----
+> “Enterprise plans sound useful during onboarding, but later most people use maybe 20% of the features.”
 
-## Interview 2 — Student Developer at College
+### Most Surprising Thing
 
-### Profile
-Independent developer using AI tools primarily for coding and personal projects.
+The most surprising part was that the engineer said AI tooling costs are usually treated as “small enough to ignore” until they suddenly become noticeable at team scale.
 
-### AI Tools Used
-- ChatGPT Plus
-- GitHub Copilot
-- Gemini (occasionally)
+I expected developers to think mostly about productivity improvements, but the conversation revealed that cost visibility is almost nonexistent in many teams.
 
-### Estimated Monthly Spend
-Approximately $40–50/month.
+### What It Changed About My Design
 
-### Key Pain Points
-- Forgetting unused subscriptions
-- Difficulty measuring whether paid plans are providing enough value
-- Overlapping tool capabilities
+Initially I planned to focus heavily on advanced analytics dashboards.
 
-### Feedback
-The user appreciated the “already optimized” state because it felt more trustworthy than always forcing savings recommendations. They suggested adding subscription renewal reminders and usage-to-cost comparison insights.
+After this conversation, I prioritized:
+- simple onboarding
+- instant recommendations
+- clear savings explanations
+- shareable reports
 
-### Preferred Product Direction
-Simple one-time audits with lightweight recommendations.
+because users first want visibility before they want deep analytics.
 
 ---
 
-## Interview 3 — Small Agency Technical Lead
+## Interview 2
 
-### Profile
-Technical lead managing AI tooling across multiple client-facing teams.
+### Person
+Yashi — Indie hacker and freelance developer running small client projects
 
-### AI Tools Used
-- Cursor
-- Claude
-- OpenAI API
-- GitHub Copilot
+### Context
+The conversation happened over whatsapp and lasted roughly 10–12 minutes.
 
-### Estimated Monthly Spend
-Approximately $1200–1500/month.
+### Direct Quotes
 
-### Key Pain Points
-- No centralized AI spend management
-- Multiple developers independently purchasing similar tools
-- Difficulty forecasting AI operational costs
+> “I subscribe to tools for projects and sometimes forget they’re still billing me.”
 
-### Feedback
-The user suggested adding organization-wide dashboards, historical spend analytics, and API optimization recommendations. They also mentioned that enterprise plans are often difficult to justify for smaller teams.
+> “I upgraded plans before because everyone online said they were worth it.”
 
-### Preferred Product Direction
-Continuous monitoring with team dashboards and analytics.
+> “Most AI tools are becoming similar enough that it’s hard to justify paying for multiple.”
+
+> “If your app honestly tells me I’m already optimized, I’d trust it more.”
+
+### Most Surprising Thing
+
+The user specifically said that exaggerated savings recommendations would reduce trust immediately.
+
+That changed how I thought about the “already optimized” state. Initially I wanted every audit to surface savings opportunities, but after this interview I intentionally added logic where some users are told their setup already looks reasonable.
+
+### What It Changed About My Design
+
+This conversation changed:
+- recommendation honesty
+- UX copy tone
+- fallback states
+
+I focused more on credibility rather than maximizing apparent savings.
 
 ---
 
-# Overall Insights
+## Interview 3
 
-Across all interviews, the most common concerns were:
+### Person
+kunal Sutradhar — Technical lead at a small agency (~15 people)
+
+### Context
+This conversation happened through LinkedIn chat and focused mainly on team-wide AI usage.
+
+### Direct Quotes
+
+> “Different developers buy AI tools independently and nobody tracks the combined cost.”
+
+> “The real problem isn’t one expensive subscription — it’s subscription sprawl.”
+
+> “API costs are harder to understand than subscription costs.”
+
+> “A dashboard showing spend per developer would actually be useful.”
+
+### Most Surprising Thing
+
+The most surprising insight was that the technical lead cared more about predictability than absolute cost reduction.
+
+I originally assumed users mainly wanted lower bills, but this conversation showed that visibility and forecasting may actually matter more for teams.
+
+### What It Changed About My Design
+
+This interview influenced:
+- future dashboard ideas
+- benchmark concepts
+- recurring monitoring direction
+
+It also reinforced the decision to keep public shareable audit URLs because agency teams often discuss tooling decisions collaboratively.
+
+---
+
+# Overall Learnings
+
+Across all three interviews, the strongest recurring themes were:
 - overlapping subscriptions
-- rising API costs
 - lack of centralized visibility
 - uncertainty around enterprise plan value
+- forgotten or underused subscriptions
+- difficulty understanding API spend
 
-Users responded positively to:
-- fast onboarding
-- clear savings estimates
-- honest recommendations
-- shareable audit reports
-- explainable pricing logic
+The biggest product insight was that users care more about:
+- trustworthy recommendations
+- clarity
+- visibility
+- simplicity
 
-The strongest recurring request was for ongoing monitoring and centralized spend visibility across teams.
+than aggressive optimization claims.
+
+The interviews also reinforced that this product is probably more valuable for:
+- engineering managers
+- startup founders
+- small technical teams
+
+than purely individual consumers.
