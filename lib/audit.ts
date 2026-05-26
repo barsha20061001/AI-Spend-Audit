@@ -120,6 +120,24 @@ if (
     "Enterprise-tier controls are usually unnecessary for smaller engineering teams.";
 }
 
+// Suspiciously high spend detection
+if (
+  (
+    tool.tool === "ChatGPT" ||
+    tool.tool === "Cursor" ||
+    tool.tool === "Claude"
+  ) &&
+  tool.seats <= 2 &&
+  tool.spend > 100
+) {
+  recommendedSpend = 100;
+
+  recommendation =
+    "Review duplicate subscriptions or unexpected billing usage";
+
+  reason =
+    "Your reported spend appears unusually high for the selected plan and team size.";
+}
 
     const monthlySavings = Math.max(
       0,
