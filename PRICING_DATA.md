@@ -71,9 +71,12 @@ Source: https://platform.claude.com/docs/en/about-claude/pricing
 Verified: 2026-05-26
 
 Representative API pricing:
-- Claude Haiku 4.5: $1 / million input tokens, $5 / million output tokens
-- Claude Sonnet 4.6: usage-based pricing listed on Anthropic’s official API pricing page
-- Claude Opus 4.7: $5 / million input tokens, $25 / million output tokens
+- Claude API pricing is usage-based and depends on the selected model and token usage.
+- Anthropic publishes official pricing at:
+  https://platform.claude.com/docs/en/about-claude/pricing
+
+Notes:
+The audit engine treats Anthropic API usage as variable monthly spend instead of assuming a fixed subscription cost.
 
 Notes:
 The audit engine treats Anthropic API direct as usage-based and evaluates user-entered monthly API spend rather than assuming a fixed seat price.

@@ -15,6 +15,5 @@ Covers:
 
 ```bash
 npm test
+```
 
-
----
