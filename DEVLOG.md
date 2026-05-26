@@ -81,3 +81,73 @@ The biggest challenge today was resolving Supabase permission issues and stabili
 
 **Plan for tomorrow:**  
 Finalize deployment, improve documentation, prepare screenshots/demo assets, and practice clearly explaining the architecture and product decisions for interviews and final submission.
+
+# Day 5 – Testing, CI/CD, Deployment 
+
+## What I Worked On
+Today I focused on making the AI Spend Audit project production-ready by adding automated testing, CI workflow, deployment setup, and fixing final frontend issues.
+
+---
+
+## Testing & CI/CD
+- Created audit engine unit tests using Vitest
+- Added GitHub Actions CI workflow
+- Fixed multiple linting and TypeScript issues
+- Resolved failing GitHub Actions workflow errors
+- Verified all tests pass successfully
+
+### Test Coverage Added
+- Detects ChatGPT Team overspend
+- Detects GitHub Copilot Enterprise overspend
+- Detects Cursor Business downgrade opportunities
+- Calculates annual savings correctly
+- Returns optimized state for healthy spend
+
+---
+
+## Deployment
+- Connected GitHub repository with Vercel
+- Added Supabase environment variables
+- Fixed deployment build/type issues
+- Solved Turbopack/Webpack memory issues
+- Successfully deployed production version
+
+### Live Deployment
+https://ai-spend-audit-sigma-navy.vercel.app/
+
+---
+
+## Frontend & UX Improvements
+- Fixed “Copy Shareable Link” functionality
+- Added waitlist/join notification interaction
+- Improved result page interaction flow
+- Fixed public audit share page rendering
+- Verified responsive/mobile layout
+
+---
+
+## Documentation Updates
+Updated:
+- README.md
+- DEVLOG.md
+- TESTS.md
+- USER_INTERVIEWS.md
+
+---
+
+## Key Learnings
+- GitHub Actions debugging and CI setup
+- Handling Next.js deployment errors
+- Managing environment variables securely
+- Fixing TypeScript production build issues
+- Importance of testing before deployment
+
+---
+
+## Final Status
+✅ Tests passing  
+✅ CI workflow working  
+✅ Supabase integration working  
+✅ Deployment successful  
+✅ Public audit links working  
+✅ Submission-ready build completed
