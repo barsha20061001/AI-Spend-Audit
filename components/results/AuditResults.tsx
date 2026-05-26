@@ -75,13 +75,14 @@ export default function AuditResults({
 
 <div className="flex flex-wrap items-center justify-center gap-4">
   <button
-    onClick={() =>
-      navigator.clipboard.writeText(window.location.href)
-    }
-    className="rounded-xl border border-white/10 bg-white/10 px-5 py-3 text-sm font-medium text-white transition hover:bg-white/20"
-  >
-    Copy Shareable Link
-  </button>
+  onClick={() => {
+    navigator.clipboard.writeText(window.location.href);
+    alert("Shareable link copied!");
+  }}
+  className="px-4 py-2 rounded bg-blue-600 text-white"
+>
+  Copy Shareable Link
+</button>
 
   <a
     href={`https://twitter.com/intent/tweet?text=I just analyzed my AI stack savings`}
@@ -176,10 +177,15 @@ export default function AuditResults({
       Join the waitlist to get notified when new savings opportunities appear.
     </p>
 
-    <button className="mt-6 rounded-2xl border border-white/10 bg-white/10 px-6 py-3 font-semibold text-white transition hover:bg-white/20">
-      Notify Me
-    </button>
-  </div>
+    <button
+  onClick={() => {
+    alert("Notification preference saved!");
+  }}
+  className="mt-6 rounded-2xl border border-white/10 bg-white/10 px-6 py-3 font-semibold text-white"
+>
+  Notify Me
+</button>
+      </div>
 )}
 <LeadCapture monthlySavings={totalMonthlySavings} />
 
