@@ -1,5 +1,8 @@
 # PRICING_DATA
 
+All pricing URLs below are official vendor pricing or documentation pages.
+
+
 Pricing verified: 2026-05-26  
 Currency: USD unless otherwise stated.
 
