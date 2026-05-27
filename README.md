@@ -154,6 +154,21 @@ Workflow file:
 
 ---
 
+## Deployment
+
+The project is deployed on Vercel.
+
+Production deployment:
+https://your-vercel-url.vercel.app
+
+To deploy manually:
+
+```bash
+npm run build
+```
+
+---
+
 ## Decisions
 
 1. **Next.js + React instead of plain HTML/CSS/JS**  
