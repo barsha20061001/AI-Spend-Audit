@@ -4,6 +4,14 @@ StackSaver AI is an AI spend audit platform built for startups, engineering team
 
 ---
 
+# Live Demo
+
+Deployed on Vercel.
+
+(https://ai-spend-audit-sigma-navy.vercel.app/)
+
+---
+
 # Overview
 
 StackSaver AI analyzes a team's AI tooling stack and identifies:
@@ -310,13 +318,7 @@ tests/audit.test.ts
 
 ---
 
-# Live Demo
 
-Deployed on Vercel.
-
-(https://ai-spend-audit-sigma-navy.vercel.app/)
-
----
 
 # Repository
 
