@@ -16,12 +16,23 @@ export async function POST(req: Request) {
       to: email,
       subject: "Your AI Spend Audit report is ready",
       html: `
-        <h2>Your AI Spend Audit is ready</h2>
-        <p>Your estimated monthly savings: <strong>$${monthlySavings}</strong></p>
-        <p>You can view your report here:</p>
-        <a href="${auditUrl}">${auditUrl}</a>
-        <p>If your audit shows high savings, Credex may reach out with optimization suggestions.</p>
-      `,
+  <h2>Your AI Spend Audit is confirmed</h2>
+
+  <p>Thanks for completing your AI Spend Audit.</p>
+
+  <p>
+    Estimated monthly savings:
+    <strong>$${monthlySavings}</strong>
+  </p>
+
+  ${
+    monthlySavings >= 500
+      ? `<p><strong>High-savings opportunity detected.</strong> Credex may reach out to help you capture more of these savings through discounted AI infrastructure credits and optimization support.</p>`
+      : `<p>Your audit has been saved. We will notify you if new optimization opportunities apply to your AI stack.</p>`
+  }
+
+  <p>— StackSaver AI</p>
+`
     });
 
     return NextResponse.json({ success: true });

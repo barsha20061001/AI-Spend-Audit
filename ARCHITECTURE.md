@@ -91,6 +91,8 @@ The planned email contents include:
 - public audit report link
 - Credex consultation CTA for high-savings cases
 
+Transactional email is implemented using Resend. During development, Resend sandbox restrictions allow testing with the verified sender/account email. In production, a verified domain would be added to support all recipient emails.
+
 ## What I Would Change For 10k Audits Per Day
 
 If the product needed to handle 10k audits per day, I would change:
