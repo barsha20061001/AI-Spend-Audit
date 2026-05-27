@@ -19,10 +19,18 @@ export async function generateSummary(input: SummaryInput): Promise<string> {
 
     const data = await response.json();
 
-    return data.summary;
+    if (data?.summary) {
+      return data.summary;
+    }
+
+    throw new Error("No summary returned");
   } catch {
-    return "Your audit was completed successfully. The recommendations above are based on your current AI tool spend, team size, and selected plans. Review the suggested changes to identify possible monthly and annual savings while keeping your workflow practical.";
+    return `
+Your current AI stack shows opportunities to reduce unnecessary spending while maintaining productivity. Based on this audit, switching from higher-cost or less suitable plans could save approximately $${input.totalMonthlySavings} monthly and $${input.totalAnnualSavings} annually. The recommendations specifically target ${input.tools
+      .map((tool) => tool.tool)
+      .join(
+        ", "
+      )} usage patterns and focus on plan optimization, collaboration fit, and lower-cost alternatives. These adjustments can help maintain workflow efficiency while improving overall AI infrastructure cost efficiency.
+`;
   }
 }
-
-
