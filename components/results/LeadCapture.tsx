@@ -32,7 +32,7 @@ export default function LeadCapture({
   },
 ]);
 
-const auditId = uuidv4();
+/*const auditId = uuidv4();
 
 const { data: auditData, error: auditError } = await supabase
   .from("audits")
@@ -55,7 +55,9 @@ if (auditError || !auditData) {
   console.error(auditError);
   alert(auditError?.message || "Could not save audit report.");
   return;
-}
+} */
+
+
 
 await fetch("/api/send-email", {
   method: "POST",
@@ -65,7 +67,7 @@ await fetch("/api/send-email", {
   body: JSON.stringify({
     email,
     monthlySavings,
-    auditUrl: `${window.location.origin}/audit/${auditData.id}`,
+    auditUrl: window.location.href,
   }),
 });
 
