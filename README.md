@@ -116,7 +116,22 @@ Create `.env.local`
 ```env
 NEXT_PUBLIC_SUPABASE_URL=your_supabase_url
 NEXT_PUBLIC_SUPABASE_ANON_KEY=your_supabase_anon_key
+
+OPENAI_API_KEY=your_openai_api_key
+
+RESEND_API_KEY=your_resend_api_key
+
+NEXT_PUBLIC_APP_URL=http://localhost:3000
 ```
+---
+
+### Environment Variable Notes
+
+- `NEXT_PUBLIC_SUPABASE_URL` → Supabase project URL
+- `NEXT_PUBLIC_SUPABASE_ANON_KEY` → Public anonymous API key from Supabase
+- `OPENAI_API_KEY` → Used for AI-generated audit summaries and optimization recommendations
+- `RESEND_API_KEY` → Used for transactional email delivery
+- `NEXT_PUBLIC_APP_URL` → Base application URL for local/deployed environments
 
 ---
 
