@@ -31,17 +31,21 @@ export default function LeadCapture({
   },
 ]);
 
-await supabase.from("audits").insert([
-  {
-    results: {
-      email,
-      company,
-      role,
-      teamSize,
-      monthlySavings,
+const { data: auditData } = await supabase
+  .from("audits")
+  .insert([
+    {
+      results: {
+        email,
+        company,
+        role,
+        teamSize,
+        monthlySavings,
+      },
     },
-  },
-]);
+  ])
+  .select()
+  .single();
 
 if (error) {
   console.error(error);
@@ -57,7 +61,7 @@ await fetch("/api/send-email", {
   body: JSON.stringify({
     email,
     monthlySavings,
-    auditUrl: window.location.href,
+    auditUrl: `${window.location.origin}/audit/${auditData.id}`,
   }),
 });
 
