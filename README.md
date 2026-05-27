@@ -261,22 +261,25 @@ tests/audit.test.ts
 
 ---
 
-# Screenshots
+## Screenshots
 
-## Landing Page
-(Add screenshot here)
+### Landing Page
+![Landing Page](<img width="1916" height="1015" alt="Landing Page" src="https://github.com/user-attachments/assets/57bdce8e-1d22-4751-84bd-917fce550737" />)
 
-## Audit Flow
-(Add screenshot here)
+### Audit Flow
+![Audit Flow](  <img width="1918" height="970" alt="Audit Flow" src="https://github.com/user-attachments/assets/2bc56752-29a1-479d-976b-073c934ca732" />)
 
-## Audit Results
-(Add screenshot here)
+### Audit Results
+![Audit Results](image-link)
 
-## Lead Capture
-(Add screenshot here)
+### Transactional Email
+![Transactional Email](image-link)
 
-## GitHub Actions CI
-(Add screenshot here)
+### GitHub Actions CI
+![GitHub Actions CI](image-link)
+
+### Lighthouse / PageSpeed Results
+![PageSpeed Results](image-link)
 
 ---
 
