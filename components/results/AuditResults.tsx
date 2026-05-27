@@ -1,5 +1,7 @@
 
+"use client";
 import LeadCapture from "./LeadCapture";
+
 
 
 interface AuditResult {
@@ -28,8 +30,20 @@ export default function AuditResults({
 
   const totalAnnualSavings = totalMonthlySavings * 12;
 
+  
+  
+const downloadPDF = () => {
+  window.print();
+};
+
   return (
-    <div className="mt-10 space-y-6">
+    <div id="audit-report" className="mt-10 space-y-6">
+      <button
+  onClick={downloadPDF}
+  className="rounded-xl bg-emerald-400 px-5 py-3 font-semibold text-slate-950"
+>
+  Download / Print PDF Report
+</button>
       {/* Hero */}
 
       <div className="rounded-3xl border border-emerald-400/20 bg-emerald-400/10 p-8 text-center">
