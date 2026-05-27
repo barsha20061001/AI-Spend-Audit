@@ -262,33 +262,46 @@ tests/audit.test.ts
 ---
 
 ## Screenshots
-
+ ---
 ### Landing Page
 <img width="1916" height="1015" alt="Landing Page" src="https://github.com/user-attachments/assets/384ccfa1-9961-4309-aa16-4368d8ea2010" />
 
+---
 
 ### Audit Flow
 <img width="1918" height="970" alt="Audit Flow" src="https://github.com/user-attachments/assets/34c893a7-f7c1-4cb6-a41f-2edadde2b813" />
 
+---
 
 ### Audit Results
 <img width="1918" height="958" alt="audit results" src="https://github.com/user-attachments/assets/39755337-7d77-4098-afde-c5dbbbc5098a" />
 
+
 <img width="1918" height="908" alt="audit results 2" src="https://github.com/user-attachments/assets/b6be9a23-c985-4740-aa02-f2a5dc5c237f" />
+
+---
 
 ### Lead capture 
 <img width="1918" height="961" alt="lead capture" src="https://github.com/user-attachments/assets/3daf118e-3c84-4ab6-a10c-36a6134ccd42" />
 
+---
+
 ### saved report
 <img width="1918" height="967" alt="audit save" src="https://github.com/user-attachments/assets/a49c51aa-bafe-4c2e-8a48-2bc21a191789" />
+
+---
 
 
 ### Transactional Email
 <img width="720" height="1041" alt="WhatsApp Image 2026-05-27 at 20 04 59 (1)" src="https://github.com/user-attachments/assets/4844f04e-1a54-4494-a2e2-a5cdaecd526f" />
 
+---
+
 
 ### GitHub Actions CI
 <img width="1918" height="967" alt="GitHub Actions CI" src="https://github.com/user-attachments/assets/b2d304e7-e7bd-4706-8639-bf8d6b18b883" />
+
+---
 
 
 ### PageSpeed Results
