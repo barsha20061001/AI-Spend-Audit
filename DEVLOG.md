@@ -1,5 +1,18 @@
 # DEVLOG
-## Day 1 — 2026-05-22
+
+## Day 1 — 2026-05-21
+**Hours worked:** 1
+
+**What I did:** Spent time understanding the assignment requirements, reviewing deliverables, planning the overall project structure, and researching possible approaches for the AI spend audit workflow and pricing analysis system.
+
+**What I learned:** Learned how the project combines product thinking, engineering, pricing research, and business metrics instead of being only a coding assignment.
+
+**Blockers / what I'm stuck on:** Needed more clarity on architecture decisions, pricing data sources, and the best way to structure the audit flow before starting implementation.
+
+**Plan for tomorrow:** Finalize project architecture, initialize the repository, and begin implementing the landing page and audit workflow.
+
+
+## Day 2 — 2026-05-22
 
 **Hours worked:** 2
 
@@ -16,7 +29,7 @@ Still deciding how detailed the audit engine and pricing logic should become whi
 Start building the landing page, spend input flow, and overall project structure.
 
 
-## Day 2 — 2026-05-23
+## Day 3 — 2026-05-23
 
 **Hours worked:** 4
 
@@ -32,7 +45,7 @@ The biggest challenge currently is designing audit logic that feels financially 
 **Plan for tomorrow:**  
 Build the pricing data structure, create the first version of the audit engine, and support multiple AI tools dynamically in the form. I also plan to start writing automated tests for the savings calculations.
 
-## Day 3 — 2026-05-24
+## Day 4 — 2026-05-24
 
 **Hours worked:** 5
 
@@ -48,7 +61,7 @@ The biggest challenge is balancing simplicity with credibility. I don’t want t
 **Plan for tomorrow:**  
 Implement shareable audit result pages, improve the visual polish of the results dashboard, and add AI-generated personalized summaries with fallback handling.
 
-## Day 4 — 2026-05-25
+## Day 5 — 2026-05-25
 
 **Hours worked:** 5
 
@@ -64,7 +77,7 @@ The current share system uses local browser storage, so public links are device-
 **Plan for tomorrow:**  
 Implement backend persistence, lead capture flows, and database-backed audit storage with basic abuse protection.
 
-## Day 5 — 2026-05-25
+## Day 5 (EVENING) — 2026-05-25
 
 **Hours worked:** 9
 
