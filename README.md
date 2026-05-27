@@ -303,6 +303,8 @@ tests/audit.test.ts
 ### Transactional Email
 <img width="720" height="1041" alt="WhatsApp Image 2026-05-27 at 20 04 59 (1)" src="https://github.com/user-attachments/assets/4844f04e-1a54-4494-a2e2-a5cdaecd526f" />
 
+> Note: Transactional email delivery is implemented using Resend. During development/testing, Resend sandbox restrictions only allow delivery to verified sender/account email addresses unless a custom domain is configured. The production implementation supports broader delivery once a verified domain is attached.
+
 ---
 
 
