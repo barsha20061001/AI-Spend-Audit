@@ -7,22 +7,21 @@ interface SummaryInput {
   }[];
 }
 
-export async function generateSummary(
-  input: SummaryInput
-) {
+export async function generateSummary(input: SummaryInput): Promise<string> {
   try {
-    // Temporary mock AI response
-    // Later we will connect real API
+    const response = await fetch("/api/summary", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(input),
+    });
 
-    const summary = `
-Your current AI tooling stack shows an estimated savings opportunity of approximately $${input.totalMonthlySavings} per month and $${input.totalAnnualSavings} annually. Several tools in your stack appear to be operating on plans that may not match your current team size or usage requirements. Optimizing subscriptions, reducing unnecessary enterprise features, and reviewing API usage patterns could significantly improve cost efficiency while maintaining similar productivity outcomes.
-`;
+    const data = await response.json();
 
-    return summary.trim();
-  } catch (error) {
-    return `
-Your AI stack was analyzed successfully. Some opportunities for reducing unnecessary spending were identified based on your current plans, usage profile, and team size.
-`.trim();
+    return data.summary;
+  } catch {
+    return "Your audit was completed successfully. The recommendations above are based on your current AI tool spend, team size, and selected plans. Review the suggested changes to identify possible monthly and annual savings while keeping your workflow practical.";
   }
 }
 
