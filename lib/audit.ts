@@ -72,10 +72,10 @@ if (
   recommendedSpend = tool.spend * 0.75;
 
   recommendation =
-    "Optimize API usage or explore discounted infrastructure credits";
+  "Review API usage and explore startup or committed-use credits";
 
-  reason =
-    "Your API spend appears high relative to team size. Usage optimization or discounted credits could reduce costs substantially.";
+reason =
+  "Sustained API spend above this threshold may qualify for lower effective pricing through usage optimization, startup credits, or committed-use discounts.";
 }
 
 // Anthropic API overspend
@@ -121,11 +121,15 @@ if (
 }
 
 // Suspiciously high spend detection
+// Suspiciously high spend detection
 if (
+  recommendation === "Current setup looks optimal" &&
   (
     tool.tool === "ChatGPT" ||
     tool.tool === "Cursor" ||
-    tool.tool === "Claude"
+    tool.tool === "Claude" ||
+    tool.tool === "Gemini" ||
+    tool.tool === "Windsurf"
   ) &&
   tool.seats <= 2 &&
   tool.spend > 100
@@ -137,6 +141,46 @@ if (
 
   reason =
     "Your reported spend appears unusually high for the selected plan and team size.";
+}
+
+// Cross-tool alternative: Cursor Enterprise -> Windsurf Teams
+if (
+  recommendation === "Current setup looks optimal" &&
+  tool.tool === "Cursor" &&
+  tool.plan.toLowerCase() === "enterprise" &&
+  tool.seats <= 5
+) {
+  recommendedSpend = 40 * tool.seats;
+
+  recommendation = "Evaluate Windsurf Teams as a lower-cost coding assistant alternative";
+
+  reason =
+    "For smaller engineering teams, a lower-cost AI coding assistant may provide similar day-to-day coding support without enterprise-level overhead.";
+}
+
+// Cross-tool alternative: Claude Max -> ChatGPT Plus
+if (
+  recommendation === "Current setup looks optimal" &&
+  tool.tool === "Claude" &&
+  tool.plan.toLowerCase() === "max" &&
+  tool.seats <= 3
+) {
+  recommendedSpend = 20 * tool.seats;
+
+  recommendation = "Evaluate ChatGPT Plus for general writing and research workflows";
+
+  reason =
+    "For small teams using AI mainly for writing, research, or mixed tasks, a lower-cost general AI subscription may be sufficient.";
+}
+
+// Seat-count anomaly
+if (tool.seats >= 10 && tool.spend / tool.seats < 5) {
+  recommendedSpend = tool.spend;
+
+  recommendation = "Review seat count for accuracy";
+
+  reason =
+    "The number of paid seats appears high compared with the entered monthly spend, which may indicate unused seats or incorrect billing data.";
 }
 
     const monthlySavings = Math.max(
