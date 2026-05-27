@@ -17,11 +17,13 @@ interface AuditResult {
 interface Props {
   results: AuditResult[];
   summary: string;
+  teamSize?: number;
 }
 
 export default function AuditResults({
   results,
   summary,
+   teamSize = 1,
 }: Props) {
   const totalMonthlySavings = results.reduce(
     (acc, item) => acc + item.monthlySavings,
@@ -29,6 +31,21 @@ export default function AuditResults({
   );
 
   const totalAnnualSavings = totalMonthlySavings * 12;
+
+  const totalSpend = results.reduce(
+  (sum, result) => sum + result.currentSpend,
+  0
+);
+
+const spendPerDeveloper =
+  teamSize && teamSize > 0
+    ? totalSpend / teamSize
+    : totalSpend;
+
+const benchmarkAverage = 28;
+
+const benchmarkDifference =
+  spendPerDeveloper - benchmarkAverage;
 
   
   
@@ -117,6 +134,39 @@ const downloadPDF = () => {
 <p className="leading-8 text-slate-300">
   {summary || "Generating AI-powered audit summary..."}
 </p>
+</div>
+
+<div className="rounded-2xl border border-slate-800 bg-slate-900 p-6">
+  <h3 className="text-xl font-semibold text-white">
+    Benchmark Mode
+  </h3>
+
+  <p className="mt-3 text-slate-300">
+    Your AI spend per developer is approximately{" "}
+    <span className="font-semibold text-emerald-400">
+      ${spendPerDeveloper.toFixed(0)}/month
+    </span>.
+  </p>
+
+  <p className="mt-2 text-slate-300">
+    Companies of similar size typically average around{" "}
+    <span className="font-semibold text-white">
+      $28/month
+    </span>{" "}
+    per developer on AI tooling.
+  </p>
+
+  {benchmarkDifference > 0 ? (
+    <p className="mt-3 text-amber-300">
+      Your spend appears above benchmark levels and may
+      contain optimization opportunities.
+    </p>
+  ) : (
+    <p className="mt-3 text-emerald-300">
+      Your spend is currently within healthy benchmark
+      range.
+    </p>
+  )}
 </div>
 
       {/* Tool Results */}

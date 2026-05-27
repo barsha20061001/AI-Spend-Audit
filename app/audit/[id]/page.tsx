@@ -93,6 +93,7 @@ export default function AuditPage({
         <AuditResults
   results={results}
   summary="This shareable audit report summarizes the detected AI spend optimization opportunities based on the saved audit results."
+   teamSize={5}
 />
       </div>
     </main>
