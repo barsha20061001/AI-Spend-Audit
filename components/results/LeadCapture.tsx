@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { supabase } from "@/lib/supabase";
+import { v4 as uuidv4 } from "uuid";
 
 interface Props {
   monthlySavings: number;
@@ -31,10 +32,13 @@ export default function LeadCapture({
   },
 ]);
 
+const auditId = uuidv4();
+
 const { data: auditData, error: auditError } = await supabase
   .from("audits")
   .insert([
     {
+      id: auditId,
       results: {
         email,
         company,
