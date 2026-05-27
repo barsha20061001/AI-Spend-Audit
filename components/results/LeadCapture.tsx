@@ -31,7 +31,7 @@ export default function LeadCapture({
   },
 ]);
 
-const { data: auditData } = await supabase
+const { data: auditData, error: auditError } = await supabase
   .from("audits")
   .insert([
     {
@@ -44,12 +44,12 @@ const { data: auditData } = await supabase
       },
     },
   ])
-  .select()
+  .select("id")
   .single();
 
-if (error) {
-  console.error(error);
-  alert(error.message);
+if (auditError || !auditData) {
+  console.error(auditError);
+  alert(auditError?.message || "Could not save audit report.");
   return;
 }
 
