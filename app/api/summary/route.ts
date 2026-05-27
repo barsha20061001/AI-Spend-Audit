@@ -46,8 +46,9 @@ ${body.tools
     });
   } catch {
     return NextResponse.json({
-      summary:
-        "Your audit was completed successfully. The recommendations above are based on your current AI tool spend, team size, and selected plans. Review the suggested changes to identify possible monthly and annual savings while keeping your workflow practical.",
-    });
+  summary: `
+Your current AI stack shows opportunities to reduce unnecessary spending while maintaining productivity. Based on this audit, switching from higher-cost or less suitable plans could save approximately $${totalMonthlySavings} monthly and $${totalAnnualSavings} annually. The recommendations specifically target ${tools.map((tool: any) => tool.tool).join(", ")} usage patterns and focus on plan optimization, collaboration fit, and lower-cost alternatives. These adjustments can help maintain workflow efficiency while improving overall AI infrastructure cost efficiency.
+`,
+});
   }
 }
