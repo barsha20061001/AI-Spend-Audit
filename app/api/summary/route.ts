@@ -1,8 +1,10 @@
 import { NextResponse } from "next/server";
 
 export async function POST(req: Request) {
+  let body: any = {};
+
   try {
-    const body = await req.json();
+    body = await req.json();
 
     const prompt = `
 You are an AI spend optimization assistant.
@@ -15,10 +17,7 @@ Annual savings: $${body.totalAnnualSavings}
 
 Recommendations:
 ${body.tools
-  .map(
-    (tool: any) =>
-      `- ${tool.tool}: ${tool.recommendation}`
-  )
+  .map((tool: any) => `- ${tool.tool}: ${tool.recommendation}`)
   .join("\n")}
 `;
 
@@ -46,9 +45,11 @@ ${body.tools
     });
   } catch {
     return NextResponse.json({
-  summary: `
-Your current AI stack shows opportunities to reduce unnecessary spending while maintaining productivity. Based on this audit, switching from higher-cost or less suitable plans could save approximately $${totalMonthlySavings} monthly and $${totalAnnualSavings} annually. The recommendations specifically target ${tools.map((tool: any) => tool.tool).join(", ")} usage patterns and focus on plan optimization, collaboration fit, and lower-cost alternatives. These adjustments can help maintain workflow efficiency while improving overall AI infrastructure cost efficiency.
+      summary: `
+Your current AI stack shows opportunities to reduce unnecessary spending while maintaining productivity. Based on this audit, switching from higher-cost or less suitable plans could save approximately $${body.totalMonthlySavings || 0} monthly and $${body.totalAnnualSavings || 0} annually. The recommendations specifically target ${(body.tools || [])
+        .map((tool: any) => tool.tool)
+        .join(", ")} usage patterns and focus on plan optimization, collaboration fit, and lower-cost alternatives. These adjustments can help maintain workflow efficiency while improving overall AI infrastructure cost efficiency.
 `,
-});
+    });
   }
 }
