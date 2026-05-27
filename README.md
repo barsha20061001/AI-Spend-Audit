@@ -1,6 +1,6 @@
 # StackSaver AI
 
-AI spend audit platform that helps startups and engineering teams identify unnecessary AI subscription and API costs through automated audits and optimization recommendations.
+StackSaver AI is an AI spend audit platform built for startups, engineering teams, and growing SaaS companies. It analyzes AI tooling usage, detects unnecessary spending, and provides actionable optimization recommendations to reduce infrastructure and subscription costs. The platform also includes benchmark comparisons, shareable reports, and lead-capture workflows for high-savings opportunities.
 
 ---
 
