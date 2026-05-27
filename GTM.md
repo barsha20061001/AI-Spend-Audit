@@ -105,11 +105,14 @@ Post short audit examples and insights on X:
 
 This creates curiosity-driven traffic.
 
-### Step 5 — Lightweight SEO
-Write short blog posts targeting:
-- AI pricing comparisons
-- AI tooling ROI
-- startup AI spend optimization
+### Step 5 — Comment-led distribution
+I would find active posts where founders are already discussing AI bills, Cursor pricing, OpenAI API costs, or reducing startup burn. Instead of posting generic promotion, I would reply with specific mini-audit examples and offer to run a free audit for their stack.
+
+Example channels:
+- Hacker News threads about AI tool costs
+- Reddit posts in r/startups, r/SaaS, and r/ChatGPTCoding
+- X posts from founders complaining about AI/API bills
+- Product Hunt discussions around AI developer tools
 
 ---
 
