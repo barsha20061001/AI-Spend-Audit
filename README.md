@@ -154,6 +154,25 @@ Workflow file:
 
 ---
 
+## Decisions
+
+1. **Next.js + React instead of plain HTML/CSS/JS**  
+   I chose Next.js because the app needed routing for shareable audit URLs, API routes for AI summary/email, and easy Vercel deployment. The trade-off is slightly more setup, but it gives a cleaner full-stack structure.
+
+2. **Deterministic audit rules instead of AI for pricing math**  
+   I used hardcoded pricing rules for savings calculations because pricing recommendations must be explainable and defensible. AI is only used for the personalized summary, not the financial math.
+
+3. **Supabase for lead/storage backend**  
+   I chose Supabase because it is quick to set up, supports real database persistence, and works well with a serverless frontend. The trade-off is managing environment variables and table policies correctly.
+
+4. **Resend for transactional email**  
+   I used Resend because it has a simple API and a free tier suitable for confirmation emails. In development, sandbox/domain restrictions may limit delivery, but the implementation is production-ready once a verified domain is attached.
+
+5. **Tailwind CSS instead of a prebuilt website builder/template**  
+   I used Tailwind to build the UI manually and keep full control over layout, responsiveness, and visual quality. This avoids website-builder limitations while still allowing fast styling.
+
+---
+
 # Product Thinking
 
 The project was intentionally designed as:
